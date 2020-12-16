@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private TextMeshPro usernameBox;
-    private PlayerManager manager;
+    public PlayerManager manager;
     public Sprite spriteUp;
     public Sprite spriteDown;
     public Sprite spriteRight;
@@ -24,15 +24,16 @@ public class PlayerController : MonoBehaviour
         usernameBox = gameObject.GetComponentInChildren<TextMeshPro>();
         manager = gameObject.GetComponent<PlayerManager>();
         sr.sprite = spriteDown;
+        Destroy(GameObject.Find("DefaultCamera"));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!manager.isConnected)
+        /*if (!manager.isConnected)
         {
             return;
-        }
+        }*/
 
         rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Time.deltaTime * speed * 1000;
 
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else
+        else if (rb.velocity.y < 0)
         {
             if (rb.velocity.x > 0)
             {
@@ -85,6 +86,17 @@ public class PlayerController : MonoBehaviour
                 {
                     sr.sprite = spriteLeft;
                 }
+            }
+        }
+        else if (rb.velocity.y == 0)
+        {
+            if (rb.velocity.x > 0)
+            {
+                sr.sprite = spriteRight;
+            }
+            else if (rb.velocity.x < 0)
+            {
+                sr.sprite = spriteLeft;
             }
         }
 

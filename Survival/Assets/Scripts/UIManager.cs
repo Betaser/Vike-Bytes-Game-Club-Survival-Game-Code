@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject startMenu;
     public InputField usernameField;
-    public PlayerManager playerManager;
+    //public PlayerManager playerManager;
 
     private void Awake()
     {
@@ -29,8 +29,9 @@ public class UIManager : MonoBehaviour
     {
         startMenu.SetActive(false);
         usernameField.interactable = false;
-        playerManager.username = usernameField.text;
-        playerManager.isConnected = true;
+        //playerManager.username = usernameField.text; dont mind this
+        //playerManager.isConnected = true;
+        //Destroy(GameObject.Find("DefaultCamera"));
         Client.instance.ConnectToServer();
     }
 }
