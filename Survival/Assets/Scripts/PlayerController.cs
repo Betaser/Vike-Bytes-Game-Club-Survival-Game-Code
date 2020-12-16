@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public Sprite spriteDown;
     public Sprite spriteRight;
     public Sprite spriteLeft;
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (!manager.isConnected)
+        {
+            return;
+        }
+
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Time.deltaTime * speed * 1000;
 
         //determines proper sprite based on velocity. Will be updated once more sprites are available
         if (rb.velocity.y > 0)
