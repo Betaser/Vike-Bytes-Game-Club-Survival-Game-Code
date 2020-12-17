@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
             return;
         }*/
 
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Time.deltaTime * speed * 1000;
+        //rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Time.deltaTime * speed * 1000;
 
         //determines proper sprite based on velocity. Will be updated once more sprites are available
         if (rb.velocity.y > 0)
@@ -101,5 +101,23 @@ public class PlayerController : MonoBehaviour
         }
 
         usernameBox.text = manager.username;
+    }
+
+    private void FixedUpdate()
+    {
+        SendInputToServer();
+    }
+
+    private void SendInputToServer()
+    {
+        bool[] _inputs = new bool[]
+        {
+            Input.GetKey(KeyCode.UpArrow),
+            Input.GetKey(KeyCode.DownArrow),
+            Input.GetKey(KeyCode.LeftArrow),
+            Input.GetKey(KeyCode.RightArrow)
+        };
+
+        ClientSend.PlayerMovement(_inputs);
     }
 }

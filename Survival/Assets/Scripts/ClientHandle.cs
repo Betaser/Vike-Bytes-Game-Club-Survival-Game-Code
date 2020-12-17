@@ -26,4 +26,12 @@ public class ClientHandle : MonoBehaviour
         GameManager.instance.SpawnPlayer(_id, _username, _position);
 
     }
+
+    public static void PlayerPosition(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        Vector2 _position = _packet.ReadVector2();
+
+        GameManager.players[_id].transform.position = _position;
+    }
 }
