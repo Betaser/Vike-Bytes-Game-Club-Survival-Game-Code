@@ -22,8 +22,9 @@ public class ClientHandle : MonoBehaviour
         int _id = _packet.ReadInt();
         string _username = _packet.ReadString();
         Vector2 _position = _packet.ReadVector2();
+        int _sprite = _packet.ReadInt();
 
-        GameManager.instance.SpawnPlayer(_id, _username, _position);
+        GameManager.instance.SpawnPlayer(_id, _username, _position, _sprite);
 
     }
 
@@ -31,7 +32,9 @@ public class ClientHandle : MonoBehaviour
     {
         int _id = _packet.ReadInt();
         Vector2 _position = _packet.ReadVector2();
+        int _sprite = _packet.ReadInt();
 
         GameManager.players[_id].transform.position = _position;
+        GameManager.players[_id].GetComponent<PlayerManager>().sprite = _sprite;
     }
 }

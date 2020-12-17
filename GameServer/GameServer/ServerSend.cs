@@ -96,6 +96,7 @@ namespace GameServer
                 _packet.Write(_player.id);
                 _packet.Write(_player.username);
                 _packet.Write(_player.position);
+                _packet.Write(_player.sprite);
 
                 SendTCPData(_toClient, _packet);
 ;            }
@@ -107,6 +108,7 @@ namespace GameServer
             {
                 _packet.Write(_player.id);
                 _packet.Write(_player.position);
+                _packet.Write(_player.sprite);
 
                 SendUDPDataToAll(_packet);
             }

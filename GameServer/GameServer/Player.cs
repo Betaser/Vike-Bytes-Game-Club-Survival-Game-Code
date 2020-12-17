@@ -11,6 +11,7 @@ namespace GameServer
         public string username;
 
         public Vector2 position;
+        public int sprite;
 
         private float moveSpeed = 5f / Constants.TICKS_PER_SEC;
         private bool[] inputs;
@@ -20,6 +21,7 @@ namespace GameServer
             id = _id;
             username = _username;
             position = _spawnPosition;
+            sprite = 4;
 
             inputs = new bool[4];
         } 
@@ -30,18 +32,22 @@ namespace GameServer
             if (inputs[0])
             {
                 _inputDirection.Y += 1;
+                sprite = 2;
             }
             if (inputs[1])
             {
                 _inputDirection.Y -= 1;
+                sprite = 4;
             }
             if (inputs[2])
             {
                 _inputDirection.X -= 1;
+                sprite = 3;
             }
             if (inputs[3])
             {
                 _inputDirection.X += 1;
+                sprite = 1;
             }
 
             Move(_inputDirection);
