@@ -68,19 +68,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lesli\\.nuget\\packages\\": {}
+    "C:\\Users\\Qmani\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lesli\\Desktop\\MultiplayerSurvivalGame\\GameServer\\GameServer\\GameServer.csproj",
+      "projectUniqueName": "C:\\Users\\Qmani\\Downloads\\Vike-Bytes-Game-Club-Agar.io-Game-Code\\GameServer\\GameServer\\GameServer.csproj",
       "projectName": "GameServer",
-      "projectPath": "C:\\Users\\lesli\\Desktop\\MultiplayerSurvivalGame\\GameServer\\GameServer\\GameServer.csproj",
-      "packagesPath": "C:\\Users\\lesli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lesli\\Desktop\\MultiplayerSurvivalGame\\GameServer\\GameServer\\obj\\",
+      "projectPath": "C:\\Users\\Qmani\\Downloads\\Vike-Bytes-Game-Club-Agar.io-Game-Code\\GameServer\\GameServer\\GameServer.csproj",
+      "packagesPath": "C:\\Users\\Qmani\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Qmani\\Downloads\\Vike-Bytes-Game-Club-Agar.io-Game-Code\\GameServer\\GameServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\lesli\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Qmani\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

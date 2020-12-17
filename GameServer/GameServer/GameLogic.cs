@@ -9,13 +9,13 @@ namespace GameServer
         /// <summary>Runs all game logic.</summary>
         public static void Update()
         {
-            /*foreach (Client _client in Server.clients.Values)
+            foreach (Client _client in Server.clients.Values)
             {
                 if (_client.player != null)
                 {
-                    z_client.player.Update();
+                    _client.player.Update();
                 }
-            }*/
+            }
 
             ThreadManager.UpdateMain();
         }
