@@ -9,9 +9,10 @@
 /Survival/[Bb]uilds/
 /Survival/[Ll]ogs/
 /Survival/[Uu]ser[Ss]ettings/
-/GameServer/GameServer/bin
-/GameServer/GameServer/obj
+/GameServer/GameServer/bin/
+/GameServer/GameServer/obj/
 /GameServer/UpgradeLog.htm
+/GameServer/.vs/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
