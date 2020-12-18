@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject startMenu;
     public InputField usernameField;
+    public InputField ipField;
+    public InputField portField;
     //public PlayerManager playerManager;
 
     private void Awake()
@@ -29,9 +32,13 @@ public class UIManager : MonoBehaviour
     {
         startMenu.SetActive(false);
         usernameField.interactable = false;
+        ipField.interactable = false;
+        portField.interactable = false;
         //playerManager.username = usernameField.text; dont mind this
         //playerManager.isConnected = true;
         //Destroy(GameObject.Find("DefaultCamera"));
+        Client.instance.ip = ipField.text;
+        Client.instance.port = Int32.Parse(portField.text);
         Client.instance.ConnectToServer();
     }
 }
