@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 2754488942736967394}
   m_Layer: 0
   m_Name: LocalPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,6 +407,7 @@ MonoBehaviour:
   id: 0
   username: 
   sprite: 0
+  health: 0
   spriteUp: {fileID: -7402616367663662557, guid: e26ea0ec0b66eeb4faaec17054df511c,
     type: 3}
   spriteDown: {fileID: 4495478712733764576, guid: e26ea0ec0b66eeb4faaec17054df511c,

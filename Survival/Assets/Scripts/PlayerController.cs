@@ -41,4 +41,9 @@ public class PlayerController : MonoBehaviour
 
         ClientSend.PlayerMovement(_inputs);
     }
+
+    public void ChangeHealth(int healthDelta)
+    {
+        ClientSend.ChangeHealth(healthDelta);
+    }
 }

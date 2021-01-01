@@ -109,6 +109,7 @@ namespace GameServer
                 _packet.Write(_player.id);
                 _packet.Write(_player.position);
                 _packet.Write(_player.sprite);
+                _packet.Write(_player.health);
 
                 SendUDPDataToAll(_packet);
             }

@@ -33,8 +33,10 @@ public class ClientHandle : MonoBehaviour
         int _id = _packet.ReadInt();
         Vector2 _position = _packet.ReadVector2();
         int _sprite = _packet.ReadInt();
+        int _health = _packet.ReadInt();
 
         GameManager.players[_id].transform.position = _position;
         GameManager.players[_id].GetComponent<PlayerManager>().sprite = _sprite;
+        GameManager.players[_id].GetComponent<PlayerManager>().health = _health;
     }
 }

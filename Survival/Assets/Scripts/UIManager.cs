@@ -9,9 +9,14 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     public GameObject startMenu;
+    public GameObject playerHUD;
     public InputField usernameField;
     public InputField ipField;
     public InputField portField;
+    public Text healthText;
+
+    public int playerHealth;
+
     //public PlayerManager playerManager;
 
     private void Awake()
@@ -31,14 +36,22 @@ public class UIManager : MonoBehaviour
     public void ConnectToServer()
     {
         startMenu.SetActive(false);
+        playerHUD.SetActive(true);
         usernameField.interactable = false;
         ipField.interactable = false;
         portField.interactable = false;
-        //playerManager.username = usernameField.text; dont mind this
-        //playerManager.isConnected = true;
-        //Destroy(GameObject.Find("DefaultCamera"));
         Client.instance.ip = ipField.text;
         Client.instance.port = Int32.Parse(portField.text);
         Client.instance.ConnectToServer();
+    }
+
+    public void Update()
+    {
+        healthText.text = "Health: " + playerHealth;
+    }
+
+    public void AddHealth(int health)
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeHealth(health);
     }
 }

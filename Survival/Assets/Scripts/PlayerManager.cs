@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
     public string username;
     public int sprite;
 
+    public int health;
+
     public Sprite spriteUp;
     public Sprite spriteDown;
     public Sprite spriteRight;
@@ -17,8 +19,11 @@ public class PlayerManager : MonoBehaviour
     private TextMeshPro usernameBox;
     private SpriteRenderer sr;
 
+    private UIManager UI;
+
     void Start()
     {
+        UI = GameObject.Find("Menu").GetComponent<UIManager>();
         sr = gameObject.GetComponent<SpriteRenderer>();
         usernameBox = gameObject.GetComponentInChildren<TextMeshPro>();
         sr.sprite = spriteDown;
@@ -44,5 +49,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         usernameBox.text = username;
+
+        UI.playerHealth = health;
     }
 }

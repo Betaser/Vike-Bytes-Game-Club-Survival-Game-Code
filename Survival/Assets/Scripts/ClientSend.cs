@@ -46,5 +46,15 @@ public class ClientSend : MonoBehaviour
             SendUDPData(_packet);
         }
     }
+
+    public static void ChangeHealth(int _healthDelta)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.changeHealth))
+        {
+            _packet.Write(_healthDelta);
+
+            SendTCPData(_packet);
+        }
+    }
     #endregion
 }

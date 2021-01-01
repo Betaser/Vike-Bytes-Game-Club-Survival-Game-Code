@@ -32,5 +32,11 @@ namespace GameServer
             Server.clients[_fromClient].player.SetInput(_inputs);
         }
 
+        public static void ChangeHealth(int _fromClient, Packet _packet)
+        {
+            int _healthDelta = _packet.ReadInt();
+            Server.clients[_fromClient].player.ChangeHealth(_healthDelta);
+        }
+
     }
 }

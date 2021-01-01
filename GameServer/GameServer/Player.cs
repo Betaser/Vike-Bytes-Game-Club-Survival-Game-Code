@@ -12,6 +12,7 @@ namespace GameServer
 
         public Vector2 position;
         public int sprite;
+        public int health;
 
         private float moveSpeed = 5f / Constants.TICKS_PER_SEC;
         private bool[] inputs;
@@ -22,6 +23,7 @@ namespace GameServer
             username = _username;
             position = _spawnPosition;
             sprite = 4;
+            health = 100;
 
             inputs = new bool[4];
         } 
@@ -63,6 +65,11 @@ namespace GameServer
         public void SetInput(bool[] _inputs)
         {
             inputs = _inputs;
+        }
+
+        public void ChangeHealth(int _healthDelta)
+        {
+            health += _healthDelta;
         }
     }
 }
