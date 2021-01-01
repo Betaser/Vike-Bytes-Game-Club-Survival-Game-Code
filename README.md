@@ -1,5 +1,6 @@
 # Vike-Bytes-Game-Club-Agar.io-Game-Code
 
-This is a readme
+Go to releases and download the latest zip file. Unzip the contents and run the .exe!
+The game will only work if someone is running the server with proper port-forwarding.
 
 Tons of credit to Tom Weiland for the server code. 
