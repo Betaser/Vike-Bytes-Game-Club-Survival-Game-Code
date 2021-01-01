@@ -130,7 +130,8 @@ namespace GameServer
             {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
                 { (int)ClientPackets.playerMovement, ServerHandle.PlayerMovement },
-                { (int)ClientPackets.changeHealth, ServerHandle.ChangeHealth }
+                { (int)ClientPackets.changeHealth, ServerHandle.ChangeHealth },
+                { (int)ClientPackets.createAnimal, ServerHandle.CreateAnimal }
             };
             Console.WriteLine("Initialized packets.");
         }

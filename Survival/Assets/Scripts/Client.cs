@@ -274,7 +274,9 @@ public class Client : MonoBehaviour
         {
             { (int)ServerPackets.welcome, ClientHandle.Welcome },
             { (int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer },
-            { (int)ServerPackets.playerPosition, ClientHandle.PlayerPosition }
+            { (int)ServerPackets.spawnAnimal, ClientHandle.SpawnAnimal },
+            { (int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
+            { (int)ServerPackets.animalData, ClientHandle.AnimalData }
         };
         Debug.Log("Initialized packets.");
     }

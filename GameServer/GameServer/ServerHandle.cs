@@ -38,5 +38,10 @@ namespace GameServer
             Server.clients[_fromClient].player.ChangeHealth(_healthDelta);
         }
 
+        public static void CreateAnimal(int _fromClient, Packet _packet)
+        {
+            string _species = _packet.ReadString();
+            GameLogic.CreateAnimal(_species);
+        }
     }
 }

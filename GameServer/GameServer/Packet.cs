@@ -10,8 +10,9 @@ namespace GameServer
     {
         welcome = 1,
         spawnPlayer,
+        spawnAnimal,
         playerPosition,
-        playerSprite
+        animalData
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -19,7 +20,8 @@ namespace GameServer
     {
         welcomeReceived = 1,
         playerMovement,
-        changeHealth
+        changeHealth,
+        createAnimal
     }
 
     public class Packet : IDisposable

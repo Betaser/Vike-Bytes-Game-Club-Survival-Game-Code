@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance;
 
 	public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>();
+    public static Dictionary<int, AnimalManager> animals = new Dictionary<int, AnimalManager>();
 
 	public GameObject localPlayerPrefab;
 	public GameObject playerPrefab;
+    public GameObject wolfPrefab;
 
     private void Awake()
     {
@@ -42,5 +44,25 @@ public class GameManager : MonoBehaviour
         _player.GetComponent<PlayerManager>().username = _username;
         _player.GetComponent<PlayerManager>().sprite = _sprite;
         players.Add(_id, _player.GetComponent<PlayerManager>());
+    }
+
+    public void SpawnAnimal(int _id, string _species, Vector2 _position, int _sprite)
+    {
+        GameObject _animal;
+        if (_species == "wolf")
+        {
+            _animal = Instantiate(wolfPrefab);
+            _animal.transform.position = _position;
+        }
+        else
+        {
+            _animal = null;
+            Debug.LogError("species \"" + _species + "\" does not exist!");
+        }
+
+        _animal.GetComponent<AnimalManager>().id = _id;
+        _animal.GetComponent<AnimalManager>().species = _species;
+        _animal.GetComponent<AnimalManager>().sprite = _sprite;
+        animals.Add(_id, _animal.GetComponent<AnimalManager>());
     }
 }

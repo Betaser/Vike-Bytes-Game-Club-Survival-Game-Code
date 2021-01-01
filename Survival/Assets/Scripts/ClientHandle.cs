@@ -28,6 +28,16 @@ public class ClientHandle : MonoBehaviour
 
     }
 
+    public static void SpawnAnimal(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        string _species = _packet.ReadString();
+        Vector2 _position = _packet.ReadVector2();
+        int _sprite = _packet.ReadInt();
+
+        GameManager.instance.SpawnAnimal(_id, _species, _position, _sprite);
+    }
+
     public static void PlayerPosition(Packet _packet)
     {
         int _id = _packet.ReadInt();
@@ -38,5 +48,17 @@ public class ClientHandle : MonoBehaviour
         GameManager.players[_id].transform.position = _position;
         GameManager.players[_id].GetComponent<PlayerManager>().sprite = _sprite;
         GameManager.players[_id].GetComponent<PlayerManager>().health = _health;
+    }
+    
+    public static void AnimalData(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        Vector2 _position = _packet.ReadVector2();
+        int _sprite = _packet.ReadInt();
+        int _health = _packet.ReadInt();
+
+        GameManager.animals[_id].transform.position = _position;
+        GameManager.animals[_id].GetComponent<AnimalManager>().sprite = _sprite;
+        GameManager.animals[_id].GetComponent<AnimalManager>().health = _health;
     }
 }

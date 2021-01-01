@@ -54,4 +54,9 @@ public class UIManager : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeHealth(health);
     }
+
+    public void CreateAnimal(string species)
+    {
+        ClientSend.CreateAnimal(species);
+    }
 }

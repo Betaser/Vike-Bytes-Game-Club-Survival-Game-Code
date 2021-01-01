@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     public PlayerManager manager;
     public float speed;
+    private UIManager UI;
 
     // Start is called before the first frame update
     void Start()
     {
+        UI = GameObject.Find("Menu").GetComponent<UIManager>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         manager = gameObject.GetComponent<PlayerManager>();
         Destroy(GameObject.Find("DefaultCamera"));
@@ -21,7 +23,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        UI.playerHealth = manager.health;
     }
 
     private void FixedUpdate()

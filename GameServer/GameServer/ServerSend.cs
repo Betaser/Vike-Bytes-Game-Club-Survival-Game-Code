@@ -102,6 +102,19 @@ namespace GameServer
 ;            }
         }
 
+        public static void SpawnAnimal(Animal _animal)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.spawnAnimal))
+            {
+                _packet.Write(_animal.id);
+                _packet.Write(_animal.species);
+                _packet.Write(_animal.position);
+                _packet.Write(_animal.sprite);
+
+                SendTCPDataToAll(_packet);
+            }
+        }
+
         public static void PlayerPosition(Player _player)
         {
             using (Packet _packet = new Packet((int)ServerPackets.playerPosition))
@@ -110,6 +123,19 @@ namespace GameServer
                 _packet.Write(_player.position);
                 _packet.Write(_player.sprite);
                 _packet.Write(_player.health);
+
+                SendUDPDataToAll(_packet);
+            }
+        }
+
+        public static void AnimalData(Animal _animal)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.animalData))
+            {
+                _packet.Write(_animal.id);
+                _packet.Write(_animal.position);
+                _packet.Write(_animal.sprite);
+                _packet.Write(_animal.health);
 
                 SendUDPDataToAll(_packet);
             }

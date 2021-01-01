@@ -9,8 +9,9 @@ public enum ServerPackets
 {
     welcome = 1,
     spawnPlayer,
+    spawnAnimal,
     playerPosition,
-    playerSprite
+    animalData
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -18,7 +19,8 @@ public enum ClientPackets
 {
     welcomeReceived = 1,
     playerMovement,
-    changeHealth
+    changeHealth,
+    createAnimal
 }
 
 public class Packet : IDisposable
