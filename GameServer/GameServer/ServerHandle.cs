@@ -43,5 +43,6 @@ namespace GameServer
             string _species = _packet.ReadString();
             GameLogic.CreateAnimal(_species);
         }
+
     }
 }

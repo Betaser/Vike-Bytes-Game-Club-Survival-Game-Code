@@ -109,7 +109,7 @@ namespace GameServer
                 _packet.Write(_animal.id);
                 _packet.Write(_animal.species);
                 _packet.Write(_animal.position);
-                _packet.Write(_animal.sprite);
+                _packet.Write(_animal.rotation);
 
                 SendTCPDataToAll(_packet);
             }
@@ -123,6 +123,7 @@ namespace GameServer
                 _packet.Write(_player.position);
                 _packet.Write(_player.sprite);
                 _packet.Write(_player.health);
+                _packet.Write(_player.attack);
 
                 SendUDPDataToAll(_packet);
             }
@@ -134,7 +135,7 @@ namespace GameServer
             {
                 _packet.Write(_animal.id);
                 _packet.Write(_animal.position);
-                _packet.Write(_animal.sprite);
+                _packet.Write(_animal.rotation);
                 _packet.Write(_animal.health);
 
                 SendUDPDataToAll(_packet);

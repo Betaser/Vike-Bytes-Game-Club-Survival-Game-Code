@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         players.Add(_id, _player.GetComponent<PlayerManager>());
     }
 
-    public void SpawnAnimal(int _id, string _species, Vector2 _position, int _sprite)
+    public void SpawnAnimal(int _id, string _species, Vector2 _position, float _rotation)
     {
         GameObject _animal;
         if (_species == "wolf")
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         _animal.GetComponent<AnimalManager>().id = _id;
         _animal.GetComponent<AnimalManager>().species = _species;
-        _animal.GetComponent<AnimalManager>().sprite = _sprite;
+        _animal.GetComponent<AnimalManager>().rotation = _rotation;
         animals.Add(_id, _animal.GetComponent<AnimalManager>());
     }
 }

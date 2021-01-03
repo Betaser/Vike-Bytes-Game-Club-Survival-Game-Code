@@ -11,10 +11,10 @@ public class PlayerManager : MonoBehaviour
 
     public int health;
 
-    public Sprite spriteUp;
-    public Sprite spriteDown;
-    public Sprite spriteRight;
-    public Sprite spriteLeft;
+    public Sprite[] sprites;
+
+    public int attackDir = -1;
+    public GameObject[] attacks;
 
     private TextMeshPro usernameBox;
     private SpriteRenderer sr;
@@ -24,28 +24,25 @@ public class PlayerManager : MonoBehaviour
     {
         sr = gameObject.GetComponent<SpriteRenderer>();
         usernameBox = gameObject.GetComponentInChildren<TextMeshPro>();
-        sr.sprite = spriteDown;
+        sr.sprite = sprites[3];
     }
 
     void Update()
     {
-        if (sprite == 1)
-        {
-            sr.sprite = spriteRight;
-        }
-        else if (sprite == 2)
-        {
-            sr.sprite = spriteUp;
-        }
-        else if (sprite == 3)
-        {
-            sr.sprite = spriteLeft;
-        }
-        else if (sprite == 4)
-        {
-            sr.sprite = spriteDown;
-        }
+        sr.sprite = sprites[sprite];
 
         usernameBox.text = username;
+    }
+
+    private void FixedUpdate()
+    {
+        foreach (GameObject attack in attacks)
+        {
+            attack.SetActive(false);
+        }
+        if (attackDir != -1)
+        {
+            attacks[attackDir].SetActive(true);
+        }
     }
 }

@@ -33,9 +33,9 @@ public class ClientHandle : MonoBehaviour
         int _id = _packet.ReadInt();
         string _species = _packet.ReadString();
         Vector2 _position = _packet.ReadVector2();
-        int _sprite = _packet.ReadInt();
+        float _rotation = _packet.ReadFloat();
 
-        GameManager.instance.SpawnAnimal(_id, _species, _position, _sprite);
+        GameManager.instance.SpawnAnimal(_id, _species, _position, _rotation);
     }
 
     public static void PlayerPosition(Packet _packet)
@@ -44,21 +44,25 @@ public class ClientHandle : MonoBehaviour
         Vector2 _position = _packet.ReadVector2();
         int _sprite = _packet.ReadInt();
         int _health = _packet.ReadInt();
+        int _attack = _packet.ReadInt();
 
-        GameManager.players[_id].transform.position = _position;
-        GameManager.players[_id].GetComponent<PlayerManager>().sprite = _sprite;
-        GameManager.players[_id].GetComponent<PlayerManager>().health = _health;
+        Transform player = GameManager.players[_id].transform;
+        player.transform.position = _position;
+        player.GetComponent<PlayerManager>().sprite = _sprite;
+        player.GetComponent<PlayerManager>().health = _health;
+        player.GetComponent<PlayerManager>().attackDir = _attack;
+
     }
     
     public static void AnimalData(Packet _packet)
     {
         int _id = _packet.ReadInt();
         Vector2 _position = _packet.ReadVector2();
-        int _sprite = _packet.ReadInt();
+        float _rotation = _packet.ReadFloat();
         int _health = _packet.ReadInt();
 
         GameManager.animals[_id].transform.position = _position;
-        GameManager.animals[_id].GetComponent<AnimalManager>().sprite = _sprite;
+        GameManager.animals[_id].GetComponent<AnimalManager>().rotation = _rotation;
         GameManager.animals[_id].GetComponent<AnimalManager>().health = _health;
     }
 }

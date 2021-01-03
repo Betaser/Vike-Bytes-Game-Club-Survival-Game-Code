@@ -227,6 +227,14 @@ namespace GameServer
                     ServerSend.SpawnPlayer(_client.id, player);
                 }
             }
+
+            foreach (Animal _animal in GameLogic.animals.Values) 
+            {
+                if (_animal != null)
+                {
+                    ServerSend.SpawnAnimal(_animal);
+                }
+            }
         }
     }
 }

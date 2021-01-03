@@ -21,7 +21,8 @@ namespace GameServer
         welcomeReceived = 1,
         playerMovement,
         changeHealth,
-        createAnimal
+        createAnimal,
+        attack
     }
 
     public class Packet : IDisposable

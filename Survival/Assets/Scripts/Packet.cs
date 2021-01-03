@@ -20,7 +20,8 @@ public enum ClientPackets
     welcomeReceived = 1,
     playerMovement,
     changeHealth,
-    createAnimal
+    createAnimal,
+    attack
 }
 
 public class Packet : IDisposable
