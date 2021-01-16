@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SpawnPlayer(int _id, string _username, Vector2 _position, int _sprite) {
+    public void SpawnPlayer(int _id, string _username, Vector2 _position, float _rotation) {
     	GameObject _player;
         if (_id == Client.instance.myId)
         {
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
         _player.GetComponent<PlayerManager>().id = _id;
         _player.GetComponent<PlayerManager>().username = _username;
-        _player.GetComponent<PlayerManager>().sprite = _sprite;
+        _player.GetComponent<PlayerManager>().rotation = _rotation;
         players.Add(_id, _player.GetComponent<PlayerManager>());
     }
 

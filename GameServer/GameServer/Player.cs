@@ -11,9 +11,9 @@ namespace GameServer
         public string username;
 
         public Vector2 position;
-        public int sprite;
+        public float rotation;
         public int health;
-        public int attack;
+        public bool attack;
 
         private float moveSpeed = 5f / Constants.TICKS_PER_SEC;
         private bool[] inputs;
@@ -27,9 +27,9 @@ namespace GameServer
             id = _id;
             username = _username;
             position = _spawnPosition;
-            sprite = 3;
+            rotation = 0;
             health = 100;
-            attack = -1;
+            attack = false;
             attackTimer = 0;
 
             inputs = new bool[5];
@@ -41,28 +41,24 @@ namespace GameServer
             if (inputs[0])
             {
                 _inputDirection.Y += 1;
-                sprite = 1;
             }
             if (inputs[1])
             {
                 _inputDirection.Y -= 1;
-                sprite = 3;
             }
             if (inputs[2])
             {
                 _inputDirection.X -= 1;
-                sprite = 2;
             }
             if (inputs[3])
             {
                 _inputDirection.X += 1;
-                sprite = 0;
             }
             if (inputs[4])
             {
                 if(attackCooldown < 1 && !input4LastFrame)
                 {
-                    Attack(sprite);
+                    Attack();
                 }
                 input4LastFrame = true;
             }
@@ -82,7 +78,7 @@ namespace GameServer
             }
             else
             {
-                attack = -1;
+                attack = false;
             }
 
             Move(_inputDirection);
@@ -99,9 +95,10 @@ namespace GameServer
             ServerSend.PlayerPosition(this);
         }
 
-        public void SetInput(bool[] _inputs)
+        public void SetInput(bool[] _inputs, float _rotation)
         {
             inputs = _inputs;
+            rotation = _rotation;
         }
 
         public void ChangeHealth(int _healthDelta)
@@ -109,9 +106,9 @@ namespace GameServer
             health += _healthDelta;
         }
 
-        public void Attack(int _direction)
+        public void Attack()
         {
-            attack = _direction;
+            attack = true;
             attackTimer = 3;
             attackCooldown = 6;
         }

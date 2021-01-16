@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public PlayerManager manager;
     public float speed;
     private UIManager UI;
+    private float rotation;
+    private Vector2 mousePosition;
+    private Vector2 mouseWorldPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UI.playerHealth = manager.health;
+        mousePosition = Input.mousePosition;
+        mouseWorldPosition = Camera.current.ScreenToWorldPoint(mousePosition)- transform.position;
+        rotation = Mathf.Atan(mouseWorldPosition.y / mouseWorldPosition.x) * 180f / Mathf.PI + 90f;
+        if (mouseWorldPosition.x > 0)
+        {
+            rotation += 180f;
+        }
     }
 
     private void FixedUpdate()
@@ -41,8 +51,9 @@ public class PlayerController : MonoBehaviour
             Input.GetKey(KeyCode.RightArrow),
             Input.GetKey(KeyCode.Space)
         };
+        float _rotation = rotation;
 
-        ClientSend.PlayerMovement(_inputs);
+        ClientSend.PlayerMovement(_inputs, _rotation);
     }
 
     public void ChangeHealth(int healthDelta)

@@ -28,8 +28,9 @@ namespace GameServer
             {
                 _inputs[i] = _packet.ReadBool();
             }
+            float _rotation = _packet.ReadFloat();
 
-            Server.clients[_fromClient].player.SetInput(_inputs);
+            Server.clients[_fromClient].player.SetInput(_inputs, _rotation);
         }
 
         public static void ChangeHealth(int _fromClient, Packet _packet)

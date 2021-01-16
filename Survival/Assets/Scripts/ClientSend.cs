@@ -33,7 +33,7 @@ public class ClientSend : MonoBehaviour
         }
     }
 
-    public static void PlayerMovement(bool[] _inputs)
+    public static void PlayerMovement(bool[] _inputs, float _rotation)
     {
         using (Packet _packet = new Packet((int)ClientPackets.playerMovement))
         {
@@ -42,6 +42,7 @@ public class ClientSend : MonoBehaviour
             {
                 _packet.Write(_input);
             }
+            _packet.Write(_rotation);
 
             SendUDPData(_packet);
         }

@@ -7,42 +7,36 @@ public class PlayerManager : MonoBehaviour
 {
     public int id;
     public string username;
-    public int sprite;
+    public float rotation;
 
     public int health;
 
-    public Sprite[] sprites;
-
-    public int attackDir = -1;
-    public GameObject[] attacks;
+    public bool attack = false;
+    public GameObject sword;
 
     private TextMeshPro usernameBox;
-    private SpriteRenderer sr;
+    private Transform spriteTransform;
 
 
     void Start()
     {
-        sr = gameObject.GetComponent<SpriteRenderer>();
+        spriteTransform = gameObject.GetComponentInChildren<SpriteRenderer>().transform;
         usernameBox = gameObject.GetComponentInChildren<TextMeshPro>();
-        sr.sprite = sprites[3];
     }
 
     void Update()
     {
-        sr.sprite = sprites[sprite];
+        spriteTransform.rotation = Quaternion.Euler(0f, 0f, rotation);
 
         usernameBox.text = username;
     }
 
     private void FixedUpdate()
     {
-        foreach (GameObject attack in attacks)
+        sword.SetActive(false);
+        if (attack)
         {
-            attack.SetActive(false);
-        }
-        if (attackDir != -1)
-        {
-            attacks[attackDir].SetActive(true);
+            sword.SetActive(true);
         }
     }
 }

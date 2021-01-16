@@ -22,9 +22,9 @@ public class ClientHandle : MonoBehaviour
         int _id = _packet.ReadInt();
         string _username = _packet.ReadString();
         Vector2 _position = _packet.ReadVector2();
-        int _sprite = _packet.ReadInt();
+        float _rotation = _packet.ReadFloat();
 
-        GameManager.instance.SpawnPlayer(_id, _username, _position, _sprite);
+        GameManager.instance.SpawnPlayer(_id, _username, _position, _rotation);
 
     }
 
@@ -42,15 +42,15 @@ public class ClientHandle : MonoBehaviour
     {
         int _id = _packet.ReadInt();
         Vector2 _position = _packet.ReadVector2();
-        int _sprite = _packet.ReadInt();
+        float _rotation = _packet.ReadFloat();
         int _health = _packet.ReadInt();
-        int _attack = _packet.ReadInt();
+        bool _attack = _packet.ReadBool();
 
         Transform player = GameManager.players[_id].transform;
         player.transform.position = _position;
-        player.GetComponent<PlayerManager>().sprite = _sprite;
+        player.GetComponent<PlayerManager>().rotation = _rotation;
         player.GetComponent<PlayerManager>().health = _health;
-        player.GetComponent<PlayerManager>().attackDir = _attack;
+        player.GetComponent<PlayerManager>().attack = _attack;
 
     }
     
