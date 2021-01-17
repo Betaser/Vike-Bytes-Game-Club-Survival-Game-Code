@@ -45,5 +45,15 @@ namespace GameServer
             GameLogic.CreateAnimal(_species);
         }
 
+        public static void Hit(int _fromClient, Packet _packet)
+        {
+            string _type = _packet.ReadString();
+            int _id = _packet.ReadInt();
+            int _damage = _packet.ReadInt();
+            if(_type == "tree")
+            {
+                GameLogic.trees[_id].setHp( - _damage);
+            }
+        }
     }
 }

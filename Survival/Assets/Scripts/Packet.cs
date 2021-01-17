@@ -13,6 +13,7 @@ public enum ServerPackets
     playerPosition,
     animalData,
     spawnTrees,
+    updateHp
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -22,7 +23,8 @@ public enum ClientPackets
     playerMovement,
     changeHealth,
     createAnimal,
-    attack
+    attack,
+    hit
 }
 
 public class Packet : IDisposable

@@ -72,9 +72,21 @@ public class ClientHandle : MonoBehaviour
         int length = _packet.ReadInt();
         for (int i = 0; i < length; i++)
         {
+            int id = _packet.ReadInt();
             short x = _packet.ReadShort();
             short y = _packet.ReadShort();
-            GameObject.Find("GameManager").GetComponent<GameManager>().spawnTree(x, y);
+            GameObject.Find("GameManager").GetComponent<GameManager>().spawnTree(id, x, y);
+        }
+    }
+
+    public static void UpdateHp(Packet _packet)
+    {
+        string _type = _packet.ReadString();
+        int _id = _packet.ReadInt();
+        int _hp = _packet.ReadInt();
+        if (_type == "tree")
+        {
+            GameManager.trees[_id].hp = _hp;
         }
     }
 }

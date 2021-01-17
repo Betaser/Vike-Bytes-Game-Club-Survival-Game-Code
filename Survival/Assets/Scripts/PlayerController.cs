@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using TMPro;
 
@@ -28,7 +29,14 @@ public class PlayerController : MonoBehaviour
     {
         UI.playerHealth = manager.health;
         mousePosition = Input.mousePosition;
-        mouseWorldPosition = Camera.current.ScreenToWorldPoint(mousePosition)- transform.position;
+        try
+        {
+            mouseWorldPosition = Camera.current.ScreenToWorldPoint(mousePosition) - transform.position;
+        }
+        catch(NullReferenceException e)
+        {
+            //not really sure why this one happens
+        }
         rotation = Mathf.Atan(mouseWorldPosition.y / mouseWorldPosition.x) * 180f / Mathf.PI + 90f;
         if (mouseWorldPosition.x > 0)
         {
@@ -59,5 +67,18 @@ public class PlayerController : MonoBehaviour
     public void ChangeHealth(int healthDelta)
     {
         ClientSend.ChangeHealth(healthDelta);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Tree")
+        {
+            HitTree(collision.gameObject);
+        }
+    }
+
+    void HitTree(GameObject tree)
+    {
+        ClientSend.Hit("tree", tree.GetComponent<Tree>().id, 25);
     }
 }

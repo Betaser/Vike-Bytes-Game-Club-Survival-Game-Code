@@ -111,6 +111,7 @@ namespace GameServer
                 _packet.Write(GameLogic.trees.Length);
                 for (int i = 0; i < Constants.TREE_COUNT; i++)
                 {
+                    _packet.Write(GameLogic.trees[i].getId());
                     _packet.Write(GameLogic.trees[i].getX());
                     _packet.Write(GameLogic.trees[i].getY());
                 }
@@ -155,6 +156,18 @@ namespace GameServer
                 _packet.Write(_animal.health);
 
                 SendUDPDataToAll(_packet);
+            }
+        }
+
+        public static void UpdateHp(Tree _tree)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.updateHp))
+            {
+                _packet.Write("tree");
+                _packet.Write(_tree.getId());
+                _packet.Write(_tree.getHp());
+
+                SendTCPDataToAll(_packet);
             }
         }
         #endregion

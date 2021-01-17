@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 2321173582142561185}
   m_Layer: 0
   m_Name: LocalPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,9 +490,9 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8907690611316372486}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -535,11 +535,6 @@ MonoBehaviour:
   username: 
   rotation: 0
   health: 0
-  sprites:
-  - {fileID: 5410854522603319429, guid: e26ea0ec0b66eeb4faaec17054df511c, type: 3}
-  - {fileID: -7402616367663662557, guid: e26ea0ec0b66eeb4faaec17054df511c, type: 3}
-  - {fileID: -2735361975599426438, guid: e26ea0ec0b66eeb4faaec17054df511c, type: 3}
-  - {fileID: 4495478712733764576, guid: e26ea0ec0b66eeb4faaec17054df511c, type: 3}
   attack: 0
   sword: {fileID: 2225984589869298784}
 --- !u!114 &2321173582142561185

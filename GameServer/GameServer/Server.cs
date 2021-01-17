@@ -132,6 +132,7 @@ namespace GameServer
                 { (int)ClientPackets.playerMovement, ServerHandle.PlayerMovement },
                 { (int)ClientPackets.changeHealth, ServerHandle.ChangeHealth },
                 { (int)ClientPackets.createAnimal, ServerHandle.CreateAnimal },
+                { (int)ClientPackets.hit, ServerHandle.Hit }
             };
             Console.WriteLine("Initialized packets.");
         }

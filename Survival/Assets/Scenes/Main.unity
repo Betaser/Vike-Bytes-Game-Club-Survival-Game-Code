@@ -256,8 +256,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1343960843
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1805ba99c2514fc4f92aa7c442fd2ae1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1380,9 +1380,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localPlayerPrefab: {fileID: 8907690611316372486, guid: f0415fc77395dc9498a49a5e0a35291a,
     type: 3}
-  playerPrefab: {fileID: 8907690611316372486, guid: eed7f07d502288d409a3d7719e233ed5,
+  playerPrefab: {fileID: 8907690611316372486, guid: cb802f7928d37cd4b8fd315d071df4ac,
     type: 3}
   wolfPrefab: {fileID: 8907690611316372486, guid: 1224146e720ef3049b26ba2eca102f5d,
+    type: 3}
+  treePrefab: {fileID: 5986117003870516440, guid: 094b61497bdcbb04daa4f19e1c022a34,
     type: 3}
 --- !u!4 &1173838799
 Transform:

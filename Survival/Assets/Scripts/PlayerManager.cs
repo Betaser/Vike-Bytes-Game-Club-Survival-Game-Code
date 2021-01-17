@@ -17,9 +17,12 @@ public class PlayerManager : MonoBehaviour
     private TextMeshPro usernameBox;
     private Transform spriteTransform;
 
+    private Vector2 defaultSwordPosition;
+
 
     void Start()
     {
+        defaultSwordPosition = sword.transform.localPosition;
         spriteTransform = gameObject.GetComponentInChildren<SpriteRenderer>().transform;
         usernameBox = gameObject.GetComponentInChildren<TextMeshPro>();
     }
@@ -33,10 +36,15 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        sword.SetActive(false);
         if (attack)
         {
             sword.SetActive(true);
+            sword.transform.localPosition = defaultSwordPosition;
+        }
+        else
+        {
+            sword.SetActive(false);
+            sword.transform.localPosition = Vector2.zero;
         }
     }
 }

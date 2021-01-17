@@ -67,5 +67,17 @@ public class ClientSend : MonoBehaviour
             SendTCPData(_packet);
         }
     }
+
+    public static void Hit(string _type, int _id, int _damage)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.hit))
+        {
+            _packet.Write(_type);
+            _packet.Write(_id);
+            _packet.Write(_damage);
+
+            SendTCPData(_packet);
+        }
+    }
     #endregion
 }

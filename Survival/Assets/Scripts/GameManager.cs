@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>();
     public static Dictionary<int, AnimalManager> animals = new Dictionary<int, AnimalManager>();
+    public static Dictionary<int, Tree> trees = new Dictionary<int, Tree>();
 
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
@@ -68,8 +69,11 @@ public class GameManager : MonoBehaviour
         animals.Add(_id, _animal.GetComponent<AnimalManager>());
     }
 
-    public void spawnTree(short x, short y)
+    public void spawnTree(int id, short x, short y)
     {
         GameObject tree = Instantiate(treePrefab, new Vector2(x, y), Quaternion.identity);
+        tree.GetComponent<Tree>().id = id;
+        tree.GetComponent<Tree>().hp = 100;
+        trees.Add(id, tree.GetComponent<Tree>());
     }
 }
