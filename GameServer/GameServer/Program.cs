@@ -15,6 +15,8 @@ namespace GameServer
             Thread mainThread = new Thread(new ThreadStart(MainThread));
             mainThread.Start();
 
+            GameLogic.MakeAllTrees();
+
             Server.Start(50, 06006);
         }
 

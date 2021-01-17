@@ -12,7 +12,8 @@ namespace GameServer
         spawnPlayer,
         spawnAnimal,
         playerPosition,
-        animalData
+        animalData,
+        spawnTrees
     }
 
     /// <summary>Sent from client to server.</summary>

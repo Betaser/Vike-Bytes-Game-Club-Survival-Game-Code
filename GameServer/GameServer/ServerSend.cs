@@ -98,8 +98,24 @@ namespace GameServer
                 _packet.Write(_player.position);
                 _packet.Write(_player.rotation);
 
+
+
                 SendTCPData(_toClient, _packet);
 ;            }
+        }
+
+        public static void SpawnTrees (int _toClient)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.spawnTrees))
+            {
+                _packet.Write(GameLogic.trees.Length);
+                for (int i = 0; i < Constants.TREE_COUNT; i++)
+                {
+                    _packet.Write(GameLogic.trees[i].getX());
+                    _packet.Write(GameLogic.trees[i].getY());
+                }
+                SendTCPData(_toClient, _packet);
+            }
         }
 
         public static void SpawnAnimal(Animal _animal)

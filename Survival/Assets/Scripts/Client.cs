@@ -242,7 +242,7 @@ public class Client : MonoBehaviour
             }
             catch
             {
-                
+
             }
         }
 
@@ -276,7 +276,8 @@ public class Client : MonoBehaviour
             { (int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer },
             { (int)ServerPackets.spawnAnimal, ClientHandle.SpawnAnimal },
             { (int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
-            { (int)ServerPackets.animalData, ClientHandle.AnimalData }
+            { (int)ServerPackets.animalData, ClientHandle.AnimalData },
+            { (int)ServerPackets.spawnTrees, ClientHandle.SpawnTrees },
         };
         Debug.Log("Initialized packets.");
     }

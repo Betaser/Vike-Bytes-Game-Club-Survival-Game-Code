@@ -18,7 +18,8 @@ public class ClientHandle : MonoBehaviour
         Client.instance.udp.Connect(((IPEndPoint)Client.instance.tcp.socket.Client.LocalEndPoint).Port);
     }
 
-    public static void SpawnPlayer(Packet _packet) {
+    public static void SpawnPlayer(Packet _packet)
+    {
         int _id = _packet.ReadInt();
         string _username = _packet.ReadString();
         Vector2 _position = _packet.ReadVector2();
@@ -53,7 +54,7 @@ public class ClientHandle : MonoBehaviour
         player.GetComponent<PlayerManager>().attack = _attack;
 
     }
-    
+
     public static void AnimalData(Packet _packet)
     {
         int _id = _packet.ReadInt();
@@ -64,5 +65,16 @@ public class ClientHandle : MonoBehaviour
         GameManager.animals[_id].transform.position = _position;
         GameManager.animals[_id].GetComponent<AnimalManager>().rotation = _rotation;
         GameManager.animals[_id].GetComponent<AnimalManager>().health = _health;
+    }
+
+    public static void SpawnTrees(Packet _packet)
+    {
+        int length = _packet.ReadInt();
+        for (int i = 0; i < length; i++)
+        {
+            short x = _packet.ReadShort();
+            short y = _packet.ReadShort();
+            GameObject.Find("GameManager").GetComponent<GameManager>().spawnTree(x, y);
+        }
     }
 }
