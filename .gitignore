@@ -9,6 +9,7 @@
 /Survival/[Bb]uilds/
 /Survival/[Ll]ogs/
 /Survival/[Uu]ser[Ss]ettings/
+/Survival/.vscode/
 /GameServer/GameServer/bin/
 /GameServer/GameServer/obj/
 /GameServer/UpgradeLog.htm
