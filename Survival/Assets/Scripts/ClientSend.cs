@@ -79,5 +79,16 @@ public class ClientSend : MonoBehaviour
             SendTCPData(_packet);
         }
     }
+
+    public static void AddItem(string _item, int _count)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.addItem))
+        {
+            _packet.Write(_item);
+            _packet.Write(_count);
+
+            SendTCPData(_packet);
+        }
+    }
     #endregion
 }

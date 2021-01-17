@@ -55,5 +55,12 @@ namespace GameServer
                 GameLogic.trees[_id].setHp( - _damage);
             }
         }
+
+        public static void AddItem(int _fromClient, Packet _packet)
+        {
+            string _type = _packet.ReadString();
+            int _count = _packet.ReadInt();
+            Server.clients[_fromClient].player.AddItem(_type, _count);
+        }
     }
 }

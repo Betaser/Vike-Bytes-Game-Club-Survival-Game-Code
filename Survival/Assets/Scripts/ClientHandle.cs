@@ -89,4 +89,12 @@ public class ClientHandle : MonoBehaviour
             GameManager.trees[_id].hp = _hp;
         }
     }
+
+    public static void UpdateInventory(Packet _packet)
+    {
+        int _wood = _packet.ReadInt();
+
+        PlayerController player = GameManager.players[Client.instance.myId].GetComponent<PlayerController>();
+        player.wood = _wood;
+    }
 }

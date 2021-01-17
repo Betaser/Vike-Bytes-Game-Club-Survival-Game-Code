@@ -12,5 +12,9 @@ public class Tree : MonoBehaviour
     private void Update()
     {
         textBox.text = "" + hp;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -14,7 +14,8 @@ namespace GameServer
         playerPosition,
         animalData,
         spawnTrees,
-        updateHp
+        updateHp,
+        updateInventory
     }
 
     /// <summary>Sent from client to server.</summary>
@@ -25,7 +26,8 @@ namespace GameServer
         changeHealth,
         createAnimal,
         attack,
-        hit
+        hit,
+        addItem
     }
 
     public class Packet : IDisposable

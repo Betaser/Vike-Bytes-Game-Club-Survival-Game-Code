@@ -170,6 +170,16 @@ namespace GameServer
                 SendTCPDataToAll(_packet);
             }
         }
+
+        public static void UpdateInventory(Player _player)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.updateInventory))
+            {
+                _packet.Write(_player.wood);
+
+                SendTCPData(_player.id, _packet);
+            }
+        }
         #endregion
     }
 }

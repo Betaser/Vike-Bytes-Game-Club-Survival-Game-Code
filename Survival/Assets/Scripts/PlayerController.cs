@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePosition;
     private Vector2 mouseWorldPosition;
 
+    public int wood;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +81,11 @@ public class PlayerController : MonoBehaviour
 
     void HitTree(GameObject tree)
     {
-        ClientSend.Hit("tree", tree.GetComponent<Tree>().id, 25);
+        int damage = 25;
+        ClientSend.Hit("tree", tree.GetComponent<Tree>().id, damage);
+        if (tree.GetComponent<Tree>().hp <= damage)
+        {
+            ClientSend.AddItem("wood", 2);
+        }
     }
 }
