@@ -25,7 +25,7 @@ public class AnimalManager : MonoBehaviour
 
     void Update()
     {
-        transform.rotation = Quaternion.Euler(0f,0f,rotation);
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation);
         nameBox.text = species;
     }
 }

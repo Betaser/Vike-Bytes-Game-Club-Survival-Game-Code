@@ -8,6 +8,7 @@ namespace GameServer
     class GameLogic
     {
         public static Dictionary<int, Animal> animals = new Dictionary<int, Animal>();
+        public static Tree[] trees = new Tree[Constants.TREE_COUNT];
 
         /// <summary>Runs all game logic.</summary>
         public static void Update()
@@ -31,6 +32,14 @@ namespace GameServer
             ThreadManager.UpdateMain();
         }
 
+        public static void MakeAllTrees ()
+        {
+            Random r = new Random();
+            for (int i = 0; i < trees.Length; i++)
+            {
+                trees[i] = new Tree((short)(r.Next(Constants.MAP_SIZE) - 21), (short)(r.Next(Constants.MAP_SIZE) - 21), i);
+            }
+        }
         public static void CreateAnimal(string _species)
         {
             int _id = animals.Count;

@@ -235,6 +235,7 @@ namespace GameServer
                     ServerSend.SpawnAnimal(_animal);
                 }
             }
+            ServerSend.SpawnTrees(id);
         }
     }
 }

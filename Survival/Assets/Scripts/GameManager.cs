@@ -5,14 +5,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-	public static GameManager instance;
+    public static GameManager instance;
 
-	public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>();
+    public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>();
     public static Dictionary<int, AnimalManager> animals = new Dictionary<int, AnimalManager>();
 
-	public GameObject localPlayerPrefab;
-	public GameObject playerPrefab;
+    public GameObject localPlayerPrefab;
+    public GameObject playerPrefab;
     public GameObject wolfPrefab;
+    public GameObject treePrefab;
 
     private void Awake()
     {
@@ -27,8 +28,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SpawnPlayer(int _id, string _username, Vector2 _position, float _rotation) {
-    	GameObject _player;
+    public void SpawnPlayer(int _id, string _username, Vector2 _position, float _rotation)
+    {
+        GameObject _player;
         if (_id == Client.instance.myId)
         {
             _player = Instantiate(localPlayerPrefab);
@@ -64,5 +66,10 @@ public class GameManager : MonoBehaviour
         _animal.GetComponent<AnimalManager>().species = _species;
         _animal.GetComponent<AnimalManager>().rotation = _rotation;
         animals.Add(_id, _animal.GetComponent<AnimalManager>());
+    }
+
+    public void spawnTree(short x, short y)
+    {
+        GameObject tree = Instantiate(treePrefab, new Vector2(x, y), Quaternion.identity);
     }
 }
