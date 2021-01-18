@@ -52,7 +52,10 @@ namespace GameServer
             int _damage = _packet.ReadInt();
             if(_type == "tree")
             {
-                GameLogic.trees[_id].setHp( - _damage);
+                GameLogic.trees[_id].setHp(-_damage);
+            } else if (_type == "rock")
+            {
+                GameLogic.rocks[_id].setHp(-_damage);
             }
         }
 

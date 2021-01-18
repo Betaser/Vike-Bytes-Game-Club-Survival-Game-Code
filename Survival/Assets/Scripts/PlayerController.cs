@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePosition;
     private Vector2 mouseWorldPosition;
 
-    public int wood;
+    public Dictionary<string, int> inventory = new Dictionary<string, int>(); // {
+                                                                              // {"wood", 0}
+                                                                              // };
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,9 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         manager = gameObject.GetComponent<PlayerManager>();
         Destroy(GameObject.Find("DefaultCamera"));
+
+        inventory.Add("wood", 0);
+        inventory.Add("rock", 0);
     }
 
     // Update is called once per frame
@@ -35,8 +40,9 @@ public class PlayerController : MonoBehaviour
         {
             mouseWorldPosition = Camera.current.ScreenToWorldPoint(mousePosition) - transform.position;
         }
-        catch(NullReferenceException e)
+        catch (NullReferenceException e)
         {
+            Debug.Log(e);
             //not really sure why this one happens
         }
         rotation = Mathf.Atan(mouseWorldPosition.y / mouseWorldPosition.x) * 180f / Mathf.PI + 90f;
@@ -77,6 +83,11 @@ public class PlayerController : MonoBehaviour
         {
             HitTree(collision.gameObject);
         }
+        else if (collision.gameObject.tag == "Rock")
+        {
+            Debug.Log("you hit a rock");
+            HitRock(collision.gameObject);
+        }
     }
 
     void HitTree(GameObject tree)
@@ -86,6 +97,15 @@ public class PlayerController : MonoBehaviour
         if (tree.GetComponent<Tree>().hp <= damage)
         {
             ClientSend.AddItem("wood", 2);
+        }
+    }
+    void HitRock(GameObject rock)
+    {
+        int damage = 25;
+        ClientSend.Hit("rock", rock.GetComponent<Rock>().id, damage);
+        if (rock.GetComponent<Rock>().hp <= damage)
+        {
+            ClientSend.AddItem("rock", 2);
         }
     }
 }

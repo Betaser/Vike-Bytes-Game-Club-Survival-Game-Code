@@ -15,7 +15,7 @@ namespace GameServer
         public int health;
         public bool attack;
 
-        public int wood;
+        public Dictionary<string, int> inventory = new Dictionary<string, int>();
 
         private float moveSpeed = 5f / Constants.TICKS_PER_SEC;
         private bool[] inputs;
@@ -33,7 +33,8 @@ namespace GameServer
             health = 100;
             attack = false;
             attackTimer = 0;
-            wood = 0;
+            inventory["wood"] = 0;
+            inventory["rock"] = 0;
 
             inputs = new bool[5];
         } 
@@ -118,10 +119,11 @@ namespace GameServer
 
         public void AddItem(string _type, int _count)
         {
-            if(_type == "wood")
+            if (_type != "sword")
             {
-                wood += _count;
+                inventory[_type] += _count;
             }
+
             ServerSend.UpdateInventory(this);
         }
     }

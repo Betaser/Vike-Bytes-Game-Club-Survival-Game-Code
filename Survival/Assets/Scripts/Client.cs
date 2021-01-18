@@ -277,7 +277,7 @@ public class Client : MonoBehaviour
             { (int)ServerPackets.spawnAnimal, ClientHandle.SpawnAnimal },
             { (int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
             { (int)ServerPackets.animalData, ClientHandle.AnimalData },
-            { (int)ServerPackets.spawnTrees, ClientHandle.SpawnTrees },
+            { (int)ServerPackets.sendInit, ClientHandle.InitializeGame },
             { (int)ServerPackets.updateHp, ClientHandle.UpdateHp },
             { (int)ServerPackets.updateInventory, ClientHandle.UpdateInventory }
         };

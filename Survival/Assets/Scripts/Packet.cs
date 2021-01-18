@@ -12,7 +12,7 @@ public enum ServerPackets
     spawnAnimal,
     playerPosition,
     animalData,
-    spawnTrees,
+    sendInit,
     updateHp,
     updateInventory
 }

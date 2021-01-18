@@ -13,7 +13,7 @@ namespace GameServer
         spawnAnimal,
         playerPosition,
         animalData,
-        spawnTrees,
+        sendInit,
         updateHp,
         updateInventory
     }

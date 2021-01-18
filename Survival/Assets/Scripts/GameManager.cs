@@ -10,11 +10,13 @@ public class GameManager : MonoBehaviour
     public static Dictionary<int, PlayerManager> players = new Dictionary<int, PlayerManager>();
     public static Dictionary<int, AnimalManager> animals = new Dictionary<int, AnimalManager>();
     public static Dictionary<int, Tree> trees = new Dictionary<int, Tree>();
+    public static Dictionary<int, Rock> rocks = new Dictionary<int, Rock>();
 
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
     public GameObject wolfPrefab;
     public GameObject treePrefab;
+    public GameObject rockPrefab;
 
     private void Awake()
     {
@@ -75,5 +77,12 @@ public class GameManager : MonoBehaviour
         tree.GetComponent<Tree>().id = id;
         tree.GetComponent<Tree>().hp = 100;
         trees.Add(id, tree.GetComponent<Tree>());
+    }
+    public void spawnRock(int id, short x, short y)
+    {
+        GameObject rock = Instantiate(rockPrefab, new Vector2(x, y), Quaternion.identity);
+        rock.GetComponent<Rock>().id = id;
+        rock.GetComponent<Rock>().hp = 100;
+        rocks.Add(id, rock.GetComponent<Rock>());
     }
 }

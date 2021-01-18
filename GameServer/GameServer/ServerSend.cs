@@ -104,9 +104,9 @@ namespace GameServer
 ;            }
         }
 
-        public static void SpawnTrees (int _toClient)
+        public static void SendInitialize (int _toClient)
         {
-            using (Packet _packet = new Packet((int)ServerPackets.spawnTrees))
+            using (Packet _packet = new Packet((int)ServerPackets.sendInit))
             {
                 _packet.Write(GameLogic.trees.Length);
                 for (int i = 0; i < Constants.TREE_COUNT; i++)
@@ -114,6 +114,13 @@ namespace GameServer
                     _packet.Write(GameLogic.trees[i].getId());
                     _packet.Write(GameLogic.trees[i].getX());
                     _packet.Write(GameLogic.trees[i].getY());
+                }
+                _packet.Write(GameLogic.rocks.Length);
+                for (int i = 0; i < Constants.ROCK_COUNT; i++)
+                {
+                    _packet.Write(GameLogic.rocks[i].getId());
+                    _packet.Write(GameLogic.rocks[i].getX());
+                    _packet.Write(GameLogic.rocks[i].getY());
                 }
                 SendTCPData(_toClient, _packet);
             }
@@ -171,11 +178,23 @@ namespace GameServer
             }
         }
 
+        public static void UpdateHp(Rock _rock)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.updateHp))
+            {
+                _packet.Write("rock");
+                _packet.Write(_rock.getId());
+                _packet.Write(_rock.getHp());
+
+                SendTCPDataToAll(_packet);
+            }
+        }
+
         public static void UpdateInventory(Player _player)
         {
             using (Packet _packet = new Packet((int)ServerPackets.updateInventory))
             {
-                _packet.Write(_player.wood);
+                _packet.Write(_player.inventory["wood"]);
 
                 SendTCPData(_player.id, _packet);
             }
