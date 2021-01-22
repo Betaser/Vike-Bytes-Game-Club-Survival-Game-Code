@@ -33,6 +33,10 @@ namespace GameServer {
 		{
 			hp += delta;
 			ServerSend.UpdateHp(this);
+			if (hp <= 0)
+            {
+				id = -1;
+            }
 		}
 		public int getHp()
         {

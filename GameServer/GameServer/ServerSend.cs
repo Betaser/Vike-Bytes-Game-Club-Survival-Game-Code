@@ -195,6 +195,7 @@ namespace GameServer
             using (Packet _packet = new Packet((int)ServerPackets.updateInventory))
             {
                 _packet.Write(_player.inventory["wood"]);
+                _packet.Write(_player.inventory["rock"]);
 
                 SendTCPData(_player.id, _packet);
             }

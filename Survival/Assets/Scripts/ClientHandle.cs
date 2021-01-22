@@ -75,7 +75,10 @@ public class ClientHandle : MonoBehaviour
             int id = _packet.ReadInt();
             short x = _packet.ReadShort();
             short y = _packet.ReadShort();
-            GameObject.Find("GameManager").GetComponent<GameManager>().spawnTree(id, x, y);
+            if (id != -1)
+            {
+                GameObject.Find("GameManager").GetComponent<GameManager>().spawnTree(id, x, y);
+            }
         }
         length = _packet.ReadInt();
         for (int i = 0; i < length; i++)
@@ -83,7 +86,9 @@ public class ClientHandle : MonoBehaviour
             int id = _packet.ReadInt();
             short x = _packet.ReadShort();
             short y = _packet.ReadShort();
-            GameObject.Find("GameManager").GetComponent<GameManager>().spawnRock(id, x, y);
+            if (id != -1) {
+                GameObject.Find("GameManager").GetComponent<GameManager>().spawnRock(id, x, y);
+            }
         }
     }
 
@@ -105,11 +110,11 @@ public class ClientHandle : MonoBehaviour
     public static void UpdateInventory(Packet _packet)
     {
         int _wood = _packet.ReadInt();
+        int _rock = _packet.ReadInt();
 
         PlayerController player = GameManager.players[Client.instance.myId].GetComponent<PlayerController>();
 
-        Debug.Log(player.inventory["wood"]);
-
         player.inventory["wood"] = _wood;
+        player.inventory["rock"] = _rock;
     }
 }

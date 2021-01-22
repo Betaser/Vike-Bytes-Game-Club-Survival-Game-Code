@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tree
   - Rock
+  - LocalPlayer
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public InputField portField;
     public Text healthText;
 
+    private GameObject localPlayer;
     public int playerHealth;
 
     //public PlayerManager playerManager;
@@ -47,12 +48,28 @@ public class UIManager : MonoBehaviour
 
     public void Update()
     {
-        healthText.text = "Health: " + playerHealth;
+        if (localPlayer == null)
+        {
+            try
+            {
+                localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        else
+        {
+            healthText.text = "Health: " + localPlayer.GetComponent<PlayerManager>().health +
+                "\nWood: " + localPlayer.GetComponent<PlayerController>().inventory["wood"] +
+                "\nRock: " + localPlayer.GetComponent<PlayerController>().inventory["rock"];
+        }
     }
 
     public void AddHealth(int health)
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().ChangeHealth(health);
+        localPlayer.GetComponent<PlayerController>().ChangeHealth(health);
     }
 
     public void CreateAnimal(string species)

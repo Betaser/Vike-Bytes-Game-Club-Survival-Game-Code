@@ -18,14 +18,13 @@ public class AnimalManager : MonoBehaviour
 
     void Start()
     {
-        sr = gameObject.GetComponent<SpriteRenderer>();
+        sr = gameObject.GetComponentInChildren<SpriteRenderer>();
         nameBox = gameObject.GetComponentInChildren<TextMeshPro>();
-        sr.sprite = sprite;
     }
 
     void Update()
     {
-        transform.rotation = Quaternion.Euler(0f, 0f, rotation);
+        sr.transform.rotation = Quaternion.Euler(0f, 0f, rotation);
         nameBox.text = species;
     }
 }

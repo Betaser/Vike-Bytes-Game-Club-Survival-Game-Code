@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UI.playerHealth = manager.health;
         mousePosition = Input.mousePosition;
         try
         {
@@ -85,7 +84,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Rock")
         {
-            Debug.Log("you hit a rock");
             HitRock(collision.gameObject);
         }
     }
