@@ -1380,7 +1380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localPlayerPrefab: {fileID: 8907690611316372486, guid: f0415fc77395dc9498a49a5e0a35291a,
     type: 3}
-  playerPrefab: {fileID: 8907690611316372486, guid: cb802f7928d37cd4b8fd315d071df4ac,
+  playerPrefab: {fileID: 8907690611316372486, guid: a9a9142a61e81e74a93d7b10eb02cf55,
     type: 3}
   wolfPrefab: {fileID: 8907690611316372486, guid: 1224146e720ef3049b26ba2eca102f5d,
     type: 3}
