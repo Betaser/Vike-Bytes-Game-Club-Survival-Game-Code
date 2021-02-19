@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
     void HitTree(GameObject tree)
     {
         int damage = 25;
+        Debug.Log("you hit a tree");
         ClientSend.Hit("tree", tree.GetComponent<Tree>().id, damage);
         if (tree.GetComponent<Tree>().hp <= damage)
         {
