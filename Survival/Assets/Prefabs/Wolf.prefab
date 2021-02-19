@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.33, y: 2.86}
-  m_SizeDelta: {x: 1.0618243, y: 0.42812967}
+  m_AnchoredPosition: {x: -3.54, y: 0.35}
+  m_SizeDelta: {x: 0.7047367, y: 0.3161615}
   m_Pivot: {x: 0, y: 0}
 --- !u!23 &1632499251
 MeshRenderer:
@@ -125,8 +125,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 2
-  m_fontSizeBase: 2
+  m_fontSize: 0.88
+  m_fontSizeBase: 0.88
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -240,8 +240,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4913713515433233446, guid: ebd47fed0f9119e4eb60a1cf357f25ca,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0811471dc5336504092525582ef2efa8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -280,7 +279,7 @@ Transform:
   m_GameObject: {fileID: 8907690611316372486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1632499249}
   - {fileID: 2792638924560272774}
@@ -340,4 +339,4 @@ MonoBehaviour:
   species: wolf
   rotation: 0
   health: 0
-  sprite: {fileID: 4913713515433233446, guid: ebd47fed0f9119e4eb60a1cf357f25ca, type: 3}
+  sprite: {fileID: 21300000, guid: 0811471dc5336504092525582ef2efa8, type: 3}
