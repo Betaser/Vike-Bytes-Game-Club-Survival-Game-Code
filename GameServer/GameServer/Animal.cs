@@ -17,6 +17,9 @@ namespace GameServer
         private float moveSpeed = 3f / Constants.TICKS_PER_SEC;
         private float viewDistance = 20;
 
+        private Vector2 knockbackDirection;
+        private float knockbackVelocity;
+
         public Animal (int _id, string _species, Vector2 _spawnPosition)
         {
             id = _id;
@@ -53,6 +56,16 @@ namespace GameServer
                 }
             }
 
+            if (knockbackVelocity > 0)
+            {
+                position += knockbackVelocity * knockbackDirection;
+                knockbackVelocity -= 0.3f;
+                if (knockbackVelocity < 0)
+                {
+                    knockbackVelocity = 0;
+                }
+            }
+
             Move(_moveDirection);
         }
 
@@ -69,6 +82,14 @@ namespace GameServer
         public void ChangeHealth(int _healthDelta)
         {
             health += _healthDelta;
+        }
+
+        public void Hit(int _damage, int _playerID)
+        {
+            health -= _damage;
+            knockbackDirection = Vector2.Normalize(position - Server.clients[_playerID].player.position);
+            knockbackVelocity = 1;
+            ServerSend.UpdateHp(this);
         }
     }
 }

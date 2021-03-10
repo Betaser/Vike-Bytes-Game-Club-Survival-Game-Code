@@ -56,6 +56,9 @@ namespace GameServer
             } else if (_type == "rock")
             {
                 GameLogic.rocks[_id].setHp(-_damage);
+            } else if (_type == "animal")
+            {
+                GameLogic.animals[_id].Hit(_damage, _fromClient);
             }
         }
 

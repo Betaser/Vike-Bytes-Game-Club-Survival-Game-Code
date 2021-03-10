@@ -105,6 +105,10 @@ public class ClientHandle : MonoBehaviour
         {
             GameManager.rocks[_id].hp = _hp;
         }
+        else if (_type == "animal")
+        {
+            GameManager.animals[_id].health = _hp;
+        }
     }
 
     public static void UpdateInventory(Packet _packet)

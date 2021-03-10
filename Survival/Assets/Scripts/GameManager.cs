@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
         {
             _animal = Instantiate(wolfPrefab);
             _animal.transform.position = _position;
+            _animal.GetComponent<AnimalManager>().health = 100;
         }
         else
         {

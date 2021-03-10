@@ -35,6 +35,7 @@ namespace GameServer
             attackTimer = 0;
             inventory["wood"] = 0;
             inventory["rock"] = 0;
+            inventory["meat"] = 0;
 
             inputs = new bool[5];
         } 

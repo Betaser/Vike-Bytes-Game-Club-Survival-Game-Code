@@ -86,6 +86,10 @@ public class PlayerController : MonoBehaviour
         {
             HitRock(collision.gameObject);
         }
+        else if (collision.gameObject.tag == "Animal")
+        {
+            HitAnimal(collision.gameObject);
+        }
     }
 
     void HitTree(GameObject tree)
@@ -105,6 +109,15 @@ public class PlayerController : MonoBehaviour
         if (rock.GetComponent<Rock>().hp <= damage)
         {
             ClientSend.AddItem("rock", 2);
+        }
+    }
+    void HitAnimal(GameObject animal)
+    {
+        int damage = 25;
+        ClientSend.Hit("animal", animal.GetComponent<AnimalManager>().id, damage);
+        if (animal.GetComponent<AnimalManager>().health <= damage)
+        {
+            ClientSend.AddItem("meat", 2);
         }
     }
 }

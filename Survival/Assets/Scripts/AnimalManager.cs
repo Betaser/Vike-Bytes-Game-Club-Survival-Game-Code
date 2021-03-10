@@ -9,22 +9,26 @@ public class AnimalManager : MonoBehaviour
     public string species;
     public float rotation;
 
-    public int health;
+    public int health = 100;
 
     public Sprite sprite;
 
-    private TextMeshPro nameBox;
+    private TextMeshPro textBox;
     private SpriteRenderer sr;
 
     void Start()
     {
         sr = gameObject.GetComponentInChildren<SpriteRenderer>();
-        nameBox = gameObject.GetComponentInChildren<TextMeshPro>();
+        textBox = gameObject.GetComponentInChildren<TextMeshPro>();
     }
 
     void Update()
     {
         sr.transform.rotation = Quaternion.Euler(0f, 0f, rotation);
-        nameBox.text = species;
+        textBox.text = "" + health;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

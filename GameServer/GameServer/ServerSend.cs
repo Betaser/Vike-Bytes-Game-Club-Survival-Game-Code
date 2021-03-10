@@ -189,6 +189,17 @@ namespace GameServer
                 SendTCPDataToAll(_packet);
             }
         }
+        public static void UpdateHp(Animal _animal)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.updateHp))
+            {
+                _packet.Write("animal");
+                _packet.Write(_animal.id);
+                _packet.Write(_animal.health);
+
+                SendTCPDataToAll(_packet);
+            }
+        }
 
         public static void UpdateInventory(Player _player)
         {
