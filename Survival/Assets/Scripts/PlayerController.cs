@@ -60,11 +60,11 @@ public class PlayerController : MonoBehaviour
     {
         bool[] _inputs = new bool[]
         {
-            Input.GetKey(KeyCode.UpArrow),
-            Input.GetKey(KeyCode.DownArrow),
-            Input.GetKey(KeyCode.LeftArrow),
-            Input.GetKey(KeyCode.RightArrow),
-            Input.GetKey(KeyCode.Space)
+            Input.GetKey(KeyCode.W),
+            Input.GetKey(KeyCode.S),
+            Input.GetKey(KeyCode.A),
+            Input.GetKey(KeyCode.D),
+            Input.GetMouseButton(0)
         };
         float _rotation = rotation;
 

@@ -7,7 +7,7 @@ namespace GameServer
 {
     class GameLogic
     {
-        public static Dictionary<int, Animal> animals = new Dictionary<int, Animal>();
+        public static Animal[] animals = new Animal[Constants.ANIMAL_COUNT];
         public static Tree[] trees = new Tree[Constants.TREE_COUNT];
         public static Rock[] rocks = new Rock[Constants.ROCK_COUNT];
 
@@ -23,7 +23,7 @@ namespace GameServer
                 }
             }
 
-            foreach (Animal _animal in animals.Values)
+            foreach (Animal _animal in animals)
             {
                 if (_animal != null)
                 {
@@ -45,6 +45,11 @@ namespace GameServer
             {
                 rocks[i] = new Rock((short)(r.Next(Constants.MAP_SIZE) - 21), (short)(r.Next(Constants.MAP_SIZE) - 21), i);
             }
+            for (int i = 0; i < Constants.ANIMAL_COUNT; i++)
+            {
+                animals[i] = new Animal(i, "hare", new Vector2((r.Next(Constants.MAP_SIZE) - 21), (r.Next(Constants.MAP_SIZE) - 21)));
+                ServerSend.SpawnAnimal(animals[i]);
+            }
         }
 
         /* public static void MakeAllTrees ()
@@ -55,10 +60,15 @@ namespace GameServer
                 trees[i] = new Tree((short)(r.Next(Constants.MAP_SIZE) - 21), (short)(r.Next(Constants.MAP_SIZE) - 21), i);
             }
         } */
-        public static void CreateAnimal(string _species)
+        public static void respawnAnimal(int _id)
         {
-            int _id = animals.Count;
-            animals.Add(_id, new Animal(_id, _species, Vector2.Zero));
+            Random r = new Random();
+            string species = animals[_id].species;
+            if (species == "hare")
+            {
+                species = "wolf";
+            }
+            animals[_id] = new Animal(_id, species, new Vector2(r.Next(Constants.MAP_SIZE) - 21, r.Next(Constants.MAP_SIZE) - 21));
             ServerSend.SpawnAnimal(animals[_id]);
         }
     }

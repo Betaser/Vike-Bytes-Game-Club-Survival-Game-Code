@@ -158,6 +158,7 @@ namespace GameServer
             using (Packet _packet = new Packet((int)ServerPackets.animalData))
             {
                 _packet.Write(_animal.id);
+                _packet.Write(_animal.species);
                 _packet.Write(_animal.position);
                 _packet.Write(_animal.rotation);
                 _packet.Write(_animal.health);
@@ -207,6 +208,7 @@ namespace GameServer
             {
                 _packet.Write(_player.inventory["wood"]);
                 _packet.Write(_player.inventory["rock"]);
+                _packet.Write(_player.inventory["meat"]);
 
                 SendTCPData(_player.id, _packet);
             }

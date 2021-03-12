@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject localPlayerPrefab;
     public GameObject playerPrefab;
     public GameObject wolfPrefab;
+    public GameObject harePrefab;
     public GameObject treePrefab;
     public GameObject rockPrefab;
 
@@ -59,6 +60,12 @@ public class GameManager : MonoBehaviour
             _animal = Instantiate(wolfPrefab);
             _animal.transform.position = _position;
             _animal.GetComponent<AnimalManager>().health = 100;
+            Debug.Log("spawned a wolf");
+        } else if (_species == "hare")
+        {
+            _animal = Instantiate(harePrefab);
+            _animal.transform.position = _position;
+            _animal.GetComponent<AnimalManager>().health = 100;
         }
         else
         {
@@ -66,10 +73,18 @@ public class GameManager : MonoBehaviour
             Debug.LogError("species \"" + _species + "\" does not exist!");
         }
 
+        if (animals.ContainsKey(_id))
+        {
+            Destroy(animals[_id].gameObject);
+            animals[_id] = _animal.GetComponent<AnimalManager>();
+        } else
+        {
+            animals.Add(_id, _animal.GetComponent<AnimalManager>());
+        }
+
         _animal.GetComponent<AnimalManager>().id = _id;
         _animal.GetComponent<AnimalManager>().species = _species;
         _animal.GetComponent<AnimalManager>().rotation = _rotation;
-        animals.Add(_id, _animal.GetComponent<AnimalManager>());
     }
 
     public void spawnTree(int id, short x, short y)

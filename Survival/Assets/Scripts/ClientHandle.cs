@@ -25,6 +25,8 @@ public class ClientHandle : MonoBehaviour
         Vector2 _position = _packet.ReadVector2();
         float _rotation = _packet.ReadFloat();
 
+        Debug.Log("Tried to spawn a player");
+
         GameManager.instance.SpawnPlayer(_id, _username, _position, _rotation);
 
     }
@@ -58,13 +60,25 @@ public class ClientHandle : MonoBehaviour
     public static void AnimalData(Packet _packet)
     {
         int _id = _packet.ReadInt();
+        string _species = _packet.ReadString();
         Vector2 _position = _packet.ReadVector2();
         float _rotation = _packet.ReadFloat();
         int _health = _packet.ReadInt();
 
-        GameManager.animals[_id].transform.position = _position;
-        GameManager.animals[_id].GetComponent<AnimalManager>().rotation = _rotation;
-        GameManager.animals[_id].GetComponent<AnimalManager>().health = _health;
+        if (!GameManager.animals.ContainsKey(_id))
+        {
+            Debug.LogWarning("Animal " + _id + " does not exist!");
+        }
+        else if (_species != GameManager.animals[_id].species)
+        {
+            Debug.LogWarning("Animal " + _id + " does not match species");
+        }
+        else
+        {
+            GameManager.animals[_id].transform.position = _position;
+            GameManager.animals[_id].GetComponent<AnimalManager>().rotation = _rotation;
+            GameManager.animals[_id].GetComponent<AnimalManager>().health = _health;
+        }
     }
 
     public static void InitializeGame(Packet _packet)
@@ -115,10 +129,12 @@ public class ClientHandle : MonoBehaviour
     {
         int _wood = _packet.ReadInt();
         int _rock = _packet.ReadInt();
+        int _meat = _packet.ReadInt();
 
         PlayerController player = GameManager.players[Client.instance.myId].GetComponent<PlayerController>();
 
         player.inventory["wood"] = _wood;
         player.inventory["rock"] = _rock;
+        player.inventory["meat"] = _meat;
     }
 }

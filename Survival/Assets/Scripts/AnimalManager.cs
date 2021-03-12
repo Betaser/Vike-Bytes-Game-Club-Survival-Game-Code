@@ -28,7 +28,7 @@ public class AnimalManager : MonoBehaviour
         textBox.text = "" + health;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Debug.Log("animal " + id + " just died");
         }
     }
 }

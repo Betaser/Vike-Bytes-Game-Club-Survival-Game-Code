@@ -31,6 +31,10 @@ namespace GameServer
 
         public void Update()
         {
+            if (health <= 0)
+            {
+                GameLogic.respawnAnimal(id);
+            }
             Vector2 targetPosition = position;
             float searchDistance = viewDistance;
             foreach(Client _client in Server.clients.Values)

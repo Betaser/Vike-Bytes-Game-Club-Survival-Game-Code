@@ -1384,6 +1384,8 @@ MonoBehaviour:
     type: 3}
   wolfPrefab: {fileID: 8907690611316372486, guid: 1224146e720ef3049b26ba2eca102f5d,
     type: 3}
+  harePrefab: {fileID: 8907690611316372486, guid: 8a1e0546082017048890c305d1397959,
+    type: 3}
   treePrefab: {fileID: 5986117003870516440, guid: 094b61497bdcbb04daa4f19e1c022a34,
     type: 3}
   rockPrefab: {fileID: 5986117003870516440, guid: 62b0c82989561c545bdbb4d2c7778505,

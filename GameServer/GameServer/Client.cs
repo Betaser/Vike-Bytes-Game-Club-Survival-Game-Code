@@ -228,7 +228,7 @@ namespace GameServer
                 }
             }
 
-            foreach (Animal _animal in GameLogic.animals.Values) 
+            foreach (Animal _animal in GameLogic.animals) 
             {
                 if (_animal != null)
                 {

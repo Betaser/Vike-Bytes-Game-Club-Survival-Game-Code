@@ -42,7 +42,7 @@ namespace GameServer
         public static void CreateAnimal(int _fromClient, Packet _packet)
         {
             string _species = _packet.ReadString();
-            GameLogic.CreateAnimal(_species);
+            Console.Error.WriteLine("Create animal no longer exists");
         }
 
         public static void Hit(int _fromClient, Packet _packet)
