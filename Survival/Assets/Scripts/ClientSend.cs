@@ -90,5 +90,15 @@ public class ClientSend : MonoBehaviour
             SendTCPData(_packet);
         }
     }
+
+    public static void PlayerDamage(int _damage, int _id)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.playerDamage))
+        {
+            _packet.Write(_damage);
+            _packet.Write(_id);
+            SendTCPData(_packet);
+        }
+    }
     #endregion
 }

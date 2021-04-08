@@ -15,6 +15,9 @@ namespace GameServer
         public int health;
         public bool attack;
 
+        private float knockbackVelocity;
+        private Vector2 knockbackDirection;
+
         public Dictionary<string, int> inventory = new Dictionary<string, int>();
 
         private float moveSpeed = 5f / Constants.TICKS_PER_SEC;
@@ -86,6 +89,8 @@ namespace GameServer
                 attack = false;
             }
 
+
+
             Move(_inputDirection);
         }
 
@@ -95,7 +100,16 @@ namespace GameServer
             {
                 position += Vector2.Normalize(_inputDirection) * moveSpeed;
             }
-            //position += _inputDirection * moveSpeed;
+
+            if (knockbackVelocity > 0)
+            {
+                position += knockbackVelocity * knockbackDirection;
+                knockbackVelocity -= 0.3f;
+                if (knockbackVelocity < 0)
+                {
+                    knockbackVelocity = 0;
+                }
+            }
 
             ServerSend.PlayerPosition(this);
         }
@@ -126,6 +140,13 @@ namespace GameServer
             }
 
             ServerSend.UpdateInventory(this);
+        }
+        public void Damage(int _healthDelta, int _animalId)
+        {
+
+            health -= _healthDelta;
+            knockbackDirection = Vector2.Normalize(position - GameLogic.animals[_animalId].position);
+            knockbackVelocity = 1;
         }
     }
 }

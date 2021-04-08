@@ -90,6 +90,20 @@ public class PlayerController : MonoBehaviour
         {
             HitAnimal(collision.gameObject);
         }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag != "Animal") return;
+        int damage = collision.gameObject.GetComponent<AnimalManager>().damage;
+        if (damage == 0) return;
+        PlayerHurt(damage, collision.gameObject.GetComponent<AnimalManager>().id);
+    }
+
+    void PlayerHurt(int damage, int id)
+    {
+        ClientSend.PlayerDamage(damage, id);
     }
 
     void HitTree(GameObject tree)

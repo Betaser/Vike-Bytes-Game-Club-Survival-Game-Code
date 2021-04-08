@@ -27,8 +27,10 @@ namespace GameServer
         createAnimal,
         attack,
         hit,
-        addItem
+        addItem,
+        playerDamage
     }
+
 
     public class Packet : IDisposable
     {

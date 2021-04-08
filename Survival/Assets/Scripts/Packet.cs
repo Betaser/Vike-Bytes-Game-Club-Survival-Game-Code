@@ -26,7 +26,8 @@ public enum ClientPackets
     createAnimal,
     attack,
     hit,
-    addItem
+    addItem,
+    playerDamage
 }
 
 public class Packet : IDisposable

@@ -68,5 +68,12 @@ namespace GameServer
             int _count = _packet.ReadInt();
             Server.clients[_fromClient].player.AddItem(_type, _count);
         }
+
+        public static void PlayerDamage(int _fromClient, Packet _packet)
+        {
+            int damage = _packet.ReadInt();
+            int animalId = _packet.ReadInt();
+            Server.clients[_fromClient].player.Damage(damage, animalId);
+        }
     }
 }

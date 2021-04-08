@@ -11,6 +11,8 @@ public class AnimalManager : MonoBehaviour
 
     public int health = 100;
 
+    public int damage;
+
     public Sprite sprite;
 
     private TextMeshPro textBox;
