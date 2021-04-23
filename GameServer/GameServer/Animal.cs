@@ -15,16 +15,26 @@ namespace GameServer
         public int health;
 
         private float moveSpeed = 3f / Constants.TICKS_PER_SEC;
+        private float roamSpeed = 1.5f / Constants.TICKS_PER_SEC;
         private float viewDistance = 20;
 
         private Vector2 knockbackDirection;
         private float knockbackVelocity;
+
+        private bool occupied = false;
+        private const float roamDistanceMin = 4;
+        private const float roamDistanceMax = 7;
+        private Vector2 targetPosition;
+        private int waitTimer;
+        private const int waitTimeMin = 30;
+        private const int waitTimeMax = 120;
 
         public Animal (int _id, string _species, Vector2 _spawnPosition)
         {
             id = _id;
             species = _species;
             position = _spawnPosition;
+            targetPosition = _spawnPosition;
             rotation = 0f;
             health = 100;
         } 
@@ -35,7 +45,6 @@ namespace GameServer
             {
                 GameLogic.respawnAnimal(id);
             }
-            Vector2 targetPosition = position;
             float searchDistance = viewDistance;
             foreach(Client _client in Server.clients.Values)
             {
@@ -45,9 +54,44 @@ namespace GameServer
                     if (playerDistance < searchDistance)
                     {
                         searchDistance = playerDistance;
-                        targetPosition = _client.player.position;
+                        if(species == "wolf")
+                        {
+                            targetPosition = _client.player.position;
+                        }
+                        else if(species == "hare")
+                        {
+                            targetPosition = position - (_client.player.position - position);
+                        }
+                        occupied = false;
+                        waitTimer = 0;
+                    }
+                    else
+                    {
+                        if (waitTimer <= 0)
+                        {
+                            if (!occupied)
+                            {
+                                Random numGenerator = new Random();
+                                double randomAngle = numGenerator.NextDouble() * 2 * Math.PI;
+                                targetPosition = position + new Vector2((float) Math.Cos(randomAngle), (float) Math.Sin(randomAngle)) * (float) (numGenerator.NextDouble() * (roamDistanceMax - roamDistanceMin) + roamDistanceMin);
+                                occupied = true;
+                            }
+                            else
+                            {
+                                if (Vector2.DistanceSquared(position, targetPosition) < 0.5)
+                                {
+                                    Random numGenerator = new Random();
+                                    if (waitTimer <= 0) waitTimer = numGenerator.Next(waitTimeMin, waitTimeMax);
+                                    occupied = false;
+                                }
+                            }
+                        }
                     }
                 }
+            }
+            if (waitTimer > 0)
+            {
+                waitTimer--;
             }
             Vector2 _moveDirection = targetPosition - position;
 
@@ -77,7 +121,7 @@ namespace GameServer
         {
             if (!(_inputDirection.X == 0 && _inputDirection.Y == 0))
             {
-                position += Vector2.Normalize(_inputDirection) * moveSpeed;
+                position += Vector2.Normalize(_inputDirection) * (occupied ? roamSpeed : moveSpeed) * (waitTimer > 0 ? 0 : 1);
             }
 
             ServerSend.AnimalData(this);
