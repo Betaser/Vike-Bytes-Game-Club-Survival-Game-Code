@@ -11,6 +11,7 @@ namespace GameServer
         public string username;
 
         public Vector2 position;
+        public Vector2 spawnPosition;
         public float rotation;
         public int health;
         public bool attack;
@@ -32,6 +33,7 @@ namespace GameServer
             id = _id;
             username = _username;
             position = _spawnPosition;
+            spawnPosition = _spawnPosition;
             rotation = 0;
             health = 100;
             attack = false;
@@ -45,6 +47,13 @@ namespace GameServer
 
         public void Update()
         {
+
+            if (this.health <= 0)
+            {
+                Respawn();
+                return;
+            }
+
             Vector2 _inputDirection = Vector2.Zero;
             if (inputs[0])
             {
@@ -91,6 +100,7 @@ namespace GameServer
 
 
 
+
             Move(_inputDirection);
         }
 
@@ -111,6 +121,21 @@ namespace GameServer
                 }
             }
 
+            ServerSend.PlayerPosition(this);
+        }
+
+        public void Respawn ()
+        {
+            position = spawnPosition;
+            rotation = 0;
+            health = 100;
+            attack = false;
+            attackTimer = 0;
+            inventory["wood"] = 0;
+            inventory["rock"] = 0;
+            inventory["meat"] = 0;
+            knockbackVelocity = 0;
+            knockbackDirection = Vector2.Zero;
             ServerSend.PlayerPosition(this);
         }
 
