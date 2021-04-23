@@ -137,6 +137,7 @@ namespace GameServer
             knockbackVelocity = 0;
             knockbackDirection = Vector2.Zero;
             ServerSend.PlayerPosition(this);
+            ServerSend.UpdateInventory(this);
         }
 
         public void SetInput(bool[] _inputs, float _rotation)
