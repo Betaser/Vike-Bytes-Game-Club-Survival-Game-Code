@@ -35,7 +35,7 @@ public class Client : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-
+        Disconnect();
     }
 
     /// <summary>Attempts to connect to the server.</summary>
@@ -113,6 +113,7 @@ public class Client : MonoBehaviour
                 int _byteLength = stream.EndRead(_result);
                 if (_byteLength <= 0)
                 {
+                    instance.Disconnect();
                     return;
                 }
 
@@ -124,6 +125,7 @@ public class Client : MonoBehaviour
             }
             catch
             {
+                Disconnect();
             }
         }
 
@@ -178,6 +180,15 @@ public class Client : MonoBehaviour
             }
 
             return false;
+        }
+
+        public void Disconnect()
+        {
+            instance.Disconnect();
+            stream = null;
+            receivedData = null;
+            receiveBuffer = null;
+            socket = null;
         }
 
     }
@@ -235,6 +246,7 @@ public class Client : MonoBehaviour
 
                 if (_data.Length < 4)
                 {
+                    instance.Disconnect();
                     return;
                 }
 
@@ -242,7 +254,7 @@ public class Client : MonoBehaviour
             }
             catch
             {
-
+                Disconnect();
             }
         }
 
@@ -265,6 +277,13 @@ public class Client : MonoBehaviour
                 }
             });
         }
+
+        public void Disconnect()
+        {
+            instance.Disconnect();
+            endPoint = null;
+            socket = null;
+        }
     }
 
     /// <summary>Initializes all necessary client data.</summary>
@@ -282,6 +301,19 @@ public class Client : MonoBehaviour
             { (int)ServerPackets.updateInventory, ClientHandle.UpdateInventory }
         };
         Debug.Log("Initialized packets.");
+    }
+
+    private void Disconnect()
+    {
+        if (isConnected)
+        {
+            isConnected = false;
+            tcp.socket.Close();
+            udp.socket.Close();
+            Debug.Log("Successfully disconnected from the server.");
+        }
+
+
     }
 
 }
