@@ -16,6 +16,8 @@ namespace GameServer
         public int health;
         public bool attack;
 
+        public string armor;
+
         private float knockbackVelocity;
         private Vector2 knockbackDirection;
 
@@ -41,6 +43,7 @@ namespace GameServer
             inventory["wood"] = 0;
             inventory["rock"] = 0;
             inventory["meat"] = 0;
+            armor = "nothing";
 
             inputs = new bool[5];
         } 
@@ -136,6 +139,7 @@ namespace GameServer
             inventory["meat"] = 0;
             knockbackVelocity = 0;
             knockbackDirection = Vector2.Zero;
+            armor = "nothing";
             ServerSend.PlayerPosition(this);
             ServerSend.UpdateInventory(this);
         }
@@ -148,7 +152,7 @@ namespace GameServer
 
         public void ChangeHealth(int _healthDelta)
         {
-            health += _healthDelta;
+            health += (int)(_healthDelta * GameLogic.armor[this.armor]); // redeucing damage based on armor type
         }
 
         public void Attack()
@@ -169,8 +173,7 @@ namespace GameServer
         }
         public void Damage(int _healthDelta, int _animalId)
         {
-
-            health -= _healthDelta;
+            health -= (int)(_healthDelta * GameLogic.armor[this.armor]); // redeucing damage based on armor type
             knockbackDirection = Vector2.Normalize(position - GameLogic.animals[_animalId].position);
             knockbackVelocity = 1;
         }

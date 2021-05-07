@@ -11,6 +11,8 @@ namespace GameServer
         public static Tree[] trees = new Tree[Constants.TREE_COUNT];
         public static Rock[] rocks = new Rock[Constants.ROCK_COUNT];
 
+        public static Dictionary<string, float> armor = new Dictionary<string, float>();
+
 
         /// <summary>Runs all game logic.</summary>
         public static void Update()
@@ -50,6 +52,12 @@ namespace GameServer
                 animals[i] = new Animal(i, "hare", new Vector2((r.Next(Constants.MAP_SIZE) - 21), (r.Next(Constants.MAP_SIZE) - 21)));
                 ServerSend.SpawnAnimal(animals[i]);
             }
+
+            // add armor options
+            armor.Add("nothing", 1f);
+            armor.Add("wood", 0.85f);
+            armor.Add("leather", 0.7f);
+            armor.Add("armoor", 0.5f);
         }
 
         /* public static void MakeAllTrees ()
