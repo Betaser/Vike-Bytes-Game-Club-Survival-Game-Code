@@ -173,7 +173,7 @@ namespace GameServer
         }
         public void Damage(int _healthDelta, int _animalId)
         {
-            health -= (int)(_healthDelta * GameLogic.armor[this.armor]); // redeucing damage based on armor type
+            ChangeHealth(-_healthDelta);
             knockbackDirection = Vector2.Normalize(position - GameLogic.animals[_animalId].position);
             knockbackVelocity = 1;
         }
