@@ -48,12 +48,14 @@ public class ClientHandle : MonoBehaviour
         float _rotation = _packet.ReadFloat();
         int _health = _packet.ReadInt();
         bool _attack = _packet.ReadBool();
+        bool _spectating = _packet.ReadBool();
 
         Transform player = GameManager.players[_id].transform;
         player.transform.position = _position;
         player.GetComponent<PlayerManager>().rotation = _rotation;
         player.GetComponent<PlayerManager>().health = _health;
         player.GetComponent<PlayerManager>().attack = _attack;
+        player.GetComponent<PlayerManager>().spectate = _spectating;
 
     }
 
@@ -100,7 +102,8 @@ public class ClientHandle : MonoBehaviour
             int id = _packet.ReadInt();
             short x = _packet.ReadShort();
             short y = _packet.ReadShort();
-            if (id != -1) {
+            if (id != -1)
+            {
                 GameObject.Find("GameManager").GetComponent<GameManager>().spawnRock(id, x, y);
             }
         }

@@ -50,6 +50,12 @@ namespace GameServer
             {
                 if (_client.player != null)
                 {
+                    if (_client.player.spectating) {
+                        Console.WriteLine(false);
+                        occupied = false;
+                        continue;
+                    }
+                    Console.WriteLine(true);
                     float playerDistance = Vector2.DistanceSquared(_client.player.position, position);
                     if (playerDistance < searchDistance)
                     {

@@ -148,6 +148,7 @@ namespace GameServer
                 _packet.Write(_player.rotation);
                 _packet.Write(_player.health);
                 _packet.Write(_player.attack);
+                _packet.Write(_player.spectating);
 
                 SendUDPDataToAll(_packet);
             }
