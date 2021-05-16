@@ -51,11 +51,12 @@ namespace GameServer
                 if (_client.player != null)
                 {
                     if (_client.player.spectating) {
-                        Console.WriteLine(false);
-                        occupied = false;
+                        // Console.WriteLine(false);
+                        // occupied = false;
+                        checkWaitTimer();
                         continue;
                     }
-                    Console.WriteLine(true);
+                    // Console.WriteLine(true);
                     float playerDistance = Vector2.DistanceSquared(_client.player.position, position);
                     if (playerDistance < searchDistance)
                     {
@@ -70,28 +71,11 @@ namespace GameServer
                         }
                         occupied = false;
                         waitTimer = 0;
+                        break;
                     }
                     else
                     {
-                        if (waitTimer <= 0)
-                        {
-                            if (!occupied)
-                            {
-                                Random numGenerator = new Random();
-                                double randomAngle = numGenerator.NextDouble() * 2 * Math.PI;
-                                targetPosition = position + new Vector2((float) Math.Cos(randomAngle), (float) Math.Sin(randomAngle)) * (float) (numGenerator.NextDouble() * (roamDistanceMax - roamDistanceMin) + roamDistanceMin);
-                                occupied = true;
-                            }
-                            else
-                            {
-                                if (Vector2.DistanceSquared(position, targetPosition) < 0.5)
-                                {
-                                    Random numGenerator = new Random();
-                                    if (waitTimer <= 0) waitTimer = numGenerator.Next(waitTimeMin, waitTimeMax);
-                                    occupied = false;
-                                }
-                            }
-                        }
+                        checkWaitTimer();
                     }
                 }
             }
@@ -121,6 +105,29 @@ namespace GameServer
             }
 
             Move(_moveDirection);
+        }
+
+        private void checkWaitTimer ()
+        {
+            if (waitTimer <= 0)
+            {
+                if (!occupied)
+                {
+                    Random numGenerator = new Random();
+                    double randomAngle = numGenerator.NextDouble() * 2 * Math.PI;
+                    targetPosition = position + new Vector2((float)Math.Cos(randomAngle), (float)Math.Sin(randomAngle)) * (float)(numGenerator.NextDouble() * (roamDistanceMax - roamDistanceMin) + roamDistanceMin);
+                    occupied = true;
+                }
+                else
+                {
+                    if (Vector2.DistanceSquared(position, targetPosition) < 0.5)
+                    {
+                        Random numGenerator = new Random();
+                        if (waitTimer <= 0) waitTimer = numGenerator.Next(waitTimeMin, waitTimeMax);
+                        occupied = false;
+                    }
+                }
+            }
         }
 
         private void Move(Vector2 _inputDirection)
