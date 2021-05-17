@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
     public bool attack = false;
     public GameObject sword;
 
+    public bool spectate = false;
+
     private TextMeshPro usernameBox;
     private Transform spriteTransform;
 

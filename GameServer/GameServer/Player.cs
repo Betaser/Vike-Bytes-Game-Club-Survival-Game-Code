@@ -16,6 +16,8 @@ namespace GameServer
         public int health;
         public bool attack;
 
+        public bool spectating;
+
         public string armor;
 
         private float knockbackVelocity;
@@ -44,6 +46,7 @@ namespace GameServer
             inventory["rock"] = 0;
             inventory["meat"] = 0;
             armor = "nothing";
+            spectating = false;
 
             inputs = new bool[5];
         } 
@@ -51,10 +54,11 @@ namespace GameServer
         public void Update()
         {
 
-            if (this.health <= 0)
+            if (this.health <= 0 && !this.spectating)
             {
-                Respawn();
+                Die();
                 return;
+               
             }
 
             Vector2 _inputDirection = Vector2.Zero;
@@ -101,9 +105,6 @@ namespace GameServer
                 attack = false;
             }
 
-
-
-
             Move(_inputDirection);
         }
 
@@ -127,21 +128,14 @@ namespace GameServer
             ServerSend.PlayerPosition(this);
         }
 
-        public void Respawn ()
+        public void Die ()
         {
-            position = spawnPosition;
-            rotation = 0;
-            health = 100;
             attack = false;
-            attackTimer = 0;
-            inventory["wood"] = 0;
-            inventory["rock"] = 0;
-            inventory["meat"] = 0;
             knockbackVelocity = 0;
             knockbackDirection = Vector2.Zero;
-            armor = "nothing";
+            spectating = true;
+            moveSpeed *= 1.5f; // spectators should move quickly
             ServerSend.PlayerPosition(this);
-            ServerSend.UpdateInventory(this);
         }
 
         public void SetInput(bool[] _inputs, float _rotation)
@@ -152,11 +146,13 @@ namespace GameServer
 
         public void ChangeHealth(int _healthDelta)
         {
+            if (spectating) return;
             health += (int)(_healthDelta * GameLogic.armor[this.armor]); // redeucing damage based on armor type
         }
 
         public void Attack()
         {
+            if (spectating) return;
             attack = true;
             attackTimer = 3;
             attackCooldown = 6;
@@ -164,6 +160,7 @@ namespace GameServer
 
         public void AddItem(string _type, int _count)
         {
+            if (spectating) return;
             if (_type != "sword")
             {
                 inventory[_type] += _count;
@@ -173,6 +170,7 @@ namespace GameServer
         }
         public void Damage(int _healthDelta, int _animalId)
         {
+            if (spectating) return;
             ChangeHealth(-_healthDelta);
             knockbackDirection = Vector2.Normalize(position - GameLogic.animals[_animalId].position);
             knockbackVelocity = 1;
