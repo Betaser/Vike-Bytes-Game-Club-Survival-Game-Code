@@ -9,6 +9,7 @@ namespace GameServer
     class Server
     {
         public static int MaxPlayers { get; private set; }
+        public static int currentPlayers = 0;
         public static int Port { get; private set; }
         public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
         public delegate void PacketHandler(int _fromClient, Packet _packet);
@@ -50,6 +51,7 @@ namespace GameServer
                 if (clients[i].tcp.socket == null)
                 {
                     clients[i].tcp.Connect(_client);
+                    currentPlayers = i; // we should use this for initializing the clients instead of the for loops
                     return;
                 }
             }
@@ -134,7 +136,8 @@ namespace GameServer
                 { (int)ClientPackets.createAnimal, ServerHandle.CreateAnimal },
                 { (int)ClientPackets.hit, ServerHandle.Hit },
                 { (int)ClientPackets.addItem, ServerHandle.AddItem },
-                { (int)ClientPackets.playerDamage, ServerHandle.PlayerDamage }
+                { (int)ClientPackets.playerDamage, ServerHandle.PlayerDamage },
+                { (int)ClientPackets.ready, ServerHandle.Ready }
             };
             Console.WriteLine("Initialized packets.");
         }

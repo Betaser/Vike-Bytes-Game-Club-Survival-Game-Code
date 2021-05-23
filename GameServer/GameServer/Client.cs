@@ -241,14 +241,22 @@ namespace GameServer
                     ServerSend.SpawnAnimal(_animal);
                 }
             }
-            ServerSend.SendInitialize(id);
         }
 
         public void Disconnect()
         {
             Console.WriteLine(tcp.socket.Client.RemoteEndPoint + " disconnected.");
 
+            if (player.ready)
+            {
+                GameLogic.readyPlayers--;
+            }
+
+            Server.currentPlayers--;
+
             player = null;
+
+
 
             tcp.Disconnect();
             udp.Disconnect();
