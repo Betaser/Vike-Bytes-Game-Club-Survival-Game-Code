@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public InputField usernameField;
     public InputField ipField;
     public InputField portField;
+
+    public GameObject readyButton;
     public Text healthText;
 
     private GameObject localPlayer;
@@ -75,5 +77,11 @@ public class UIManager : MonoBehaviour
     public void CreateAnimal(string species)
     {
         ClientSend.CreateAnimal(species);
+    }
+
+    public void Ready()
+    {
+        // readyButton.SetActive(false); // need to get a reference of this
+        ClientSend.Ready();
     }
 }

@@ -11,12 +11,23 @@ namespace GameServer
         public static Tree[] trees = new Tree[Constants.TREE_COUNT];
         public static Rock[] rocks = new Rock[Constants.ROCK_COUNT];
 
+        public static bool gameStarted = false;
+        public static int readyPlayers = 0;
+
         public static Dictionary<string, float> armor = new Dictionary<string, float>();
 
 
         /// <summary>Runs all game logic.</summary>
         public static void Update()
         {
+            if (!gameStarted)
+            {
+                if ((readyPlayers == Server.currentPlayers && Server.currentPlayers >= 1) || Server.currentPlayers >= 10) // thus everyone is ready or 10 players joined
+                {
+                    gameStarted = true;
+                    initializeGame();
+                }
+            }
             foreach (Client _client in Server.clients.Values)
             {
                 if (_client.player != null)
@@ -38,6 +49,7 @@ namespace GameServer
 
         public static void initializeGame ()
         {
+            if (!gameStarted) return;
             Random r = new Random();
             for (int i = 0; i < trees.Length; i++)
             {
@@ -51,6 +63,18 @@ namespace GameServer
             {
                 animals[i] = new Animal(i, "hare", new Vector2((r.Next(Constants.MAP_SIZE) - 21), (r.Next(Constants.MAP_SIZE) - 21)));
                 ServerSend.SpawnAnimal(animals[i]);
+            }
+
+            // reset spawn positions
+            foreach (Client _client in Server.clients.Values)
+            {
+                if (_client.player != null)
+                {
+                    _client.player.position = _client.player.spawnPosition;
+                    ServerSend.SendInitialize(_client.id);
+
+                    ServerSend.PlayerPosition(_client.player);
+                }
             }
 
             // add armor options

@@ -28,7 +28,8 @@ namespace GameServer
         attack,
         hit,
         addItem,
-        playerDamage
+        playerDamage,
+        ready
     }
 
 
