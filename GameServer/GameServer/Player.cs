@@ -154,8 +154,8 @@ namespace GameServer
         public void Attack()
         {
             attack = true;
-            attackTimer = 3;
-            attackCooldown = 6;
+            attackTimer = 1;
+            attackCooldown = 5;
         }
 
         public void AddItem(string _type, int _count)
