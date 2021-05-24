@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
 
     private TextMeshPro usernameBox;
     private Transform spriteTransform;
+    private Animator animator;
 
     private Vector2 defaultSwordPosition;
 
@@ -27,6 +28,7 @@ public class PlayerManager : MonoBehaviour
         defaultSwordPosition = sword.transform.localPosition;
         spriteTransform = gameObject.GetComponentInChildren<SpriteRenderer>().transform;
         usernameBox = gameObject.GetComponentInChildren<TextMeshPro>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -40,12 +42,10 @@ public class PlayerManager : MonoBehaviour
     {
         if (attack)
         {
-            sword.SetActive(true);
-            sword.transform.localPosition = defaultSwordPosition;
+            animator.SetTrigger("Attack");
         }
         else
         {
-            sword.SetActive(false);
             sword.transform.localPosition = Vector2.zero;
         }
     }
