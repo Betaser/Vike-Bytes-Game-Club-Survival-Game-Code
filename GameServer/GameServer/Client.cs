@@ -215,6 +215,12 @@ namespace GameServer
         {
             player = new Player(id, _playerName, new Vector2(0, 0));
 
+            if (GameLogic.gameStarted)
+            {
+                // .spectating = true;
+                player.Die();
+            }
+
             foreach (Client _client in Server.clients.Values)
             {
                 if (_client.player != null)

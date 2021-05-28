@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
             _player = Instantiate(playerPrefab, transform);
             _player.transform.position = _position;
         }
-
+        Debug.Log(_username);
         _player.GetComponent<PlayerManager>().id = _id;
         _player.GetComponent<PlayerManager>().username = _username;
         _player.GetComponent<PlayerManager>().rotation = _rotation;
@@ -61,7 +61,8 @@ public class GameManager : MonoBehaviour
             _animal.transform.position = _position;
             _animal.GetComponent<AnimalManager>().health = 100;
             Debug.Log("spawned a wolf");
-        } else if (_species == "hare")
+        }
+        else if (_species == "hare")
         {
             _animal = Instantiate(harePrefab);
             _animal.transform.position = _position;
@@ -77,7 +78,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(animals[_id].gameObject);
             animals[_id] = _animal.GetComponent<AnimalManager>();
-        } else
+        }
+        else
         {
             animals.Add(_id, _animal.GetComponent<AnimalManager>());
         }
