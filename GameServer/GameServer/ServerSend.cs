@@ -93,7 +93,6 @@ namespace GameServer
         {
             using (Packet _packet = new Packet((int)ServerPackets.spawnPlayer))
             {
-                Console.WriteLine(_player.username);
                 _packet.Write(_player.id);
                 _packet.Write(_player.username);
                 _packet.Write(_player.position);
