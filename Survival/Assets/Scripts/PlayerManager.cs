@@ -25,17 +25,17 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        defaultSwordPosition = sword.transform.localPosition;
-        spriteTransform = gameObject.GetComponentInChildren<SpriteRenderer>().transform;
         usernameBox = gameObject.GetComponentInChildren<TextMeshPro>();
+        spriteTransform = gameObject.GetComponentInChildren<SpriteRenderer>().transform;
         animator = gameObject.GetComponent<Animator>();
+        defaultSwordPosition = sword.transform.localPosition;
     }
 
     void Update()
     {
-        spriteTransform.rotation = Quaternion.Euler(0f, 0f, rotation);
-
         usernameBox.text = username;
+
+        spriteTransform.rotation = Quaternion.Euler(0f, 0f, rotation);
     }
 
     private void FixedUpdate()
