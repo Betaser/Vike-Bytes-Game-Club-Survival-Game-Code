@@ -26,9 +26,9 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         usernameBox = gameObject.GetComponentInChildren<TextMeshPro>();
-        defaultSwordPosition = sword.transform.localPosition;
         spriteTransform = gameObject.GetComponentInChildren<SpriteRenderer>().transform;
         animator = gameObject.GetComponent<Animator>();
+        defaultSwordPosition = sword.transform.localPosition;
     }
 
     void Update()
