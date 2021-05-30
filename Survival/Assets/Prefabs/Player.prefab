@@ -464,7 +464,8 @@ MonoBehaviour:
   rotation: 0
   health: 0
   attack: 0
-  sword: {fileID: 0}
+  sword: {fileID: 1263978055918089989}
+  spectate: 0
 --- !u!95 &8685947085071156970
 Animator:
   serializedVersion: 3
