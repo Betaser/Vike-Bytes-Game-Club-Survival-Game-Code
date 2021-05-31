@@ -55,7 +55,11 @@ public class ClientHandle : MonoBehaviour
         player.GetComponent<PlayerManager>().rotation = _rotation;
         player.GetComponent<PlayerManager>().health = _health;
         player.GetComponent<PlayerManager>().attack = _attack;
-        player.GetComponent<PlayerManager>().spectate = _spectating;
+        if (_spectating && !player.GetComponent<PlayerManager>().spectate)
+        {
+            player.GetComponent<PlayerManager>().spectate = _spectating;
+            player.GetComponent<PlayerManager>().setDeadSprite();
+        }
 
     }
 

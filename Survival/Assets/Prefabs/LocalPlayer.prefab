@@ -550,6 +550,9 @@ MonoBehaviour:
   health: 0
   attack: 0
   sword: {fileID: 7648211452171674589}
+  spectate: 0
+  spriteRenderer: {fileID: 7940075742642987231}
+  deadSprite: {fileID: 21300000, guid: 74779315cbd20264085b34ad95a259aa, type: 3}
 --- !u!114 &2321173582142561185
 MonoBehaviour:
   m_ObjectHideFlags: 0

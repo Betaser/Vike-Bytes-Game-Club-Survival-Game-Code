@@ -22,6 +22,9 @@ public class PlayerManager : MonoBehaviour
 
     private Vector2 defaultSwordPosition;
 
+    public SpriteRenderer spriteRenderer;
+    public Sprite deadSprite;
+
 
     void Start()
     {
@@ -48,5 +51,10 @@ public class PlayerManager : MonoBehaviour
         {
             sword.transform.localPosition = Vector2.zero;
         }
+    }
+
+    public void setDeadSprite()
+    {
+        spriteRenderer.sprite = deadSprite;
     }
 }

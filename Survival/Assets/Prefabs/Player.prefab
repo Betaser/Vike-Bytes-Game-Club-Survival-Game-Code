@@ -466,6 +466,8 @@ MonoBehaviour:
   attack: 0
   sword: {fileID: 1263978055918089989}
   spectate: 0
+  spriteRenderer: {fileID: 985194200548158271}
+  deadSprite: {fileID: 21300000, guid: 74779315cbd20264085b34ad95a259aa, type: 3}
 --- !u!95 &8685947085071156970
 Animator:
   serializedVersion: 3
