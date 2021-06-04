@@ -85,5 +85,32 @@ namespace GameServer
             int animalId = _packet.ReadInt();
             Server.clients[_fromClient].player.Damage(damage, animalId);
         }
+
+        public static void Buy(int _fromClient, Packet _packet)
+        {
+            string wantedItem = _packet.ReadString();
+
+            InventoryItem item = InventoryItem.getInventoryItemByName(wantedItem);
+
+            if (item == null) return;
+
+            Dictionary<string, int>.KeyCollection ingredients = item.ingredients.Keys;
+            // make sure all ingredients are there
+            foreach (string ingredient in ingredients)
+            {
+                if (Server.clients[_fromClient].player.inventory[ingredient] < item.ingredients[ingredient])
+                {
+                    return;
+                }
+            }
+            // take away ingredients
+            foreach (string ingredient in ingredients)
+            {
+                Server.clients[_fromClient].player.inventory[ingredient] -= item.ingredients[ingredient];
+            }
+
+            ServerSend.UpdateInventory(Server.clients[_fromClient].player);
+
+        }
     }
 }
