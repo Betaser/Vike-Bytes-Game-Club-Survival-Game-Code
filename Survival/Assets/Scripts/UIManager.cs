@@ -13,9 +13,14 @@ public class UIManager : MonoBehaviour
     public InputField usernameField;
     public InputField ipField;
     public InputField portField;
+    public GameObject inventoryGUI;
 
     public GameObject readyButton;
     public Text healthText;
+
+    public Text woodText;
+    public Text stoneText;
+    public Text meatText;
 
     private GameObject localPlayer;
     public int playerHealth;
@@ -63,9 +68,16 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            healthText.text = "Health: " + localPlayer.GetComponent<PlayerManager>().health +
-                "\nWood: " + localPlayer.GetComponent<PlayerController>().inventory["wood"] +
-                "\nRock: " + localPlayer.GetComponent<PlayerController>().inventory["rock"];
+            PlayerController pController = localPlayer.GetComponent<PlayerController>();
+            healthText.text = "Health: " + localPlayer.GetComponent<PlayerManager>().health;
+            woodText.text = pController.GetItemCount("wood").ToString();
+            stoneText.text = pController.GetItemCount("stone").ToString();
+            meatText.text = pController.GetItemCount("meat").ToString();
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            inventoryGUI.SetActive(!inventoryGUI.activeSelf);
         }
     }
 

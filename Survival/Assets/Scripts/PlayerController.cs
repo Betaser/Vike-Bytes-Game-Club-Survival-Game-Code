@@ -134,4 +134,10 @@ public class PlayerController : MonoBehaviour
             ClientSend.AddItem("meat", 2);
         }
     }
+
+    public int GetItemCount(String itemString)
+    {
+        Debug.LogWarning("This is a fake method!!!");
+        return 1; //just for testing purposes
+    }
 }
