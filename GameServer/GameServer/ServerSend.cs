@@ -207,10 +207,13 @@ namespace GameServer
         {
             using (Packet _packet = new Packet((int)ServerPackets.updateInventory))
             {
-                _packet.Write(_player.inventory["wood"]);
-                _packet.Write(_player.inventory["rock"]);
-                _packet.Write(_player.inventory["meat"]);
-
+                Dictionary<string, int>.KeyCollection inventory = _player.inventory.Keys;
+                _packet.Write(inventory.Count);
+                foreach (string item in inventory)
+                {
+                    _packet.Write(InventoryItem.nameToId[item]);
+                    _packet.Write(_player.inventory[item]);
+                }
                 SendTCPData(_player.id, _packet);
             }
         }
